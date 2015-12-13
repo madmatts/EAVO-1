@@ -35,13 +35,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public UserDetails loadUserByUsername(final String username)
-			throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
-		pl.mgrz.licznik.model.User user = userDao
-				.findByUserName(username);
-		List<GrantedAuthority> authorities = buildUserAuthority(user
-				.getUserRole());
+		pl.mgrz.licznik.model.User user = userDao.findByUserName(username);
+		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 
 		return buildUserForAuthentication(user, authorities);
 
@@ -49,11 +46,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
 	// Converts com.mkyong.users.model.User user to
 	// org.springframework.security.core.userdetails.User
-	private User buildUserForAuthentication(
-			pl.mgrz.licznik.model.User user,
-			List<GrantedAuthority> authorities) {
-		return new User(user.getEmail(), user.getPassword(), true, true,
-				true, true, authorities);
+	private User buildUserForAuthentication(pl.mgrz.licznik.model.User user, List<GrantedAuthority> authorities) {
+		return new User(user.getEmail(), user.getPassword(), true, true, true, true, authorities);
 	}
 
 	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {
@@ -65,8 +59,7 @@ public class MyUserDetailsService implements UserDetailsService {
 			setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
 		}
 
-		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(
-				setAuths);
+		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 
 		return Result;
 	}

@@ -14,6 +14,9 @@
 <h2>Licznik spalania</h2>
 	<div style="margin: auto; margin-bottom: 40px;">
 		<p>Witaj w aplikacji do przechowywania wyników spalania.</p>
+		<p>Host: ${host} </p>
+		<p>Port: ${port} </p>
+		<p>Database Name: ${databaseName} </p>
 	</div>
 
 

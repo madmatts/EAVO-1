@@ -50,11 +50,6 @@ public class UserController {
 
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("email", user.getEmail());
-
-		// for testing purpose:
-		System.out.println("username: " + user.getUsername());
-		System.out.println("password: " + user.getPassword());
-		System.out.println("email: " + user.getEmail());
 		return "success";
 	}
 
