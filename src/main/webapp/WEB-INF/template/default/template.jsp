@@ -3,24 +3,38 @@
 <html>
 <head>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<title>Licznik Tankowania</title>
-	<link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet" media="screen" />
-	<link href="<c:url value="/resources/css/bootstrap-theme.css" />" rel="stylesheet" />
-	<link href="<c:url value="/resources/css/style.css" />"
+<title>Elektroniczny asystent</title>
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet" media="screen" />
+<link href="<c:url value="/resources/css/bootstrap-theme.css" />"
 	rel="stylesheet" />
-	<link href='http://fonts.googleapis.com/css?family=Cambay&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet" />
+<link
+	href='http://fonts.googleapis.com/css?family=Cambay&subset=latin,latin-ext'
+	rel='stylesheet' type='text/css'>
+<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </head>
 
 <style>
 </style>
 <body>
-<div class="page container">
-	<tiles:insertAttribute name ="header" />
-	<tiles:insertAttribute name="menu" />
-	<div class="content">
-		<tiles:insertAttribute name="body" />
-	</div>
-	<tiles:insertAttribute name="footer" />
-</div>
+
+	<tiles:insertAttribute name="header" />
+
+	<%--
+	 --%>
+
+	<div class="container-fluid">
+		<div style="height: 50px;"></div>
+		<div class="row row-offcanvas row-offcanvas-left">
+			<tiles:insertAttribute name="menu" />
+			<div class="col-sm-9 col-md-10 main">
+				<tiles:insertAttribute name="body" />
+			</div>
+		</div>
+		<!--/.container-->
+		<footer>
+			<tiles:insertAttribute name="footer" />
+		</footer>
 </body>
 </html>

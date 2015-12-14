@@ -1,1 +1,1 @@
-<div class="footer">I am the Footer !</div>
+<p class="pull-right">Elektroniczny Asystent 2015</p>
