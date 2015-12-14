@@ -32,9 +32,10 @@
 				<tiles:insertAttribute name="body" />
 			</div>
 		</div>
-		<!--/.container-->
-		<footer>
-			<tiles:insertAttribute name="footer" />
-		</footer>
+	</div>
+	<!--/.container-->
+	<footer>
+		<tiles:insertAttribute name="footer" />
+	</footer>
 </body>
 </html>
