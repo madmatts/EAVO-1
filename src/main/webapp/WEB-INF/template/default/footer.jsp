@@ -1,1 +1,1 @@
-<p class="pull-right">Elektroniczny Asystent 2015</p>
+<p class="text-center"> Elektroniczny Asystent 2015</p>

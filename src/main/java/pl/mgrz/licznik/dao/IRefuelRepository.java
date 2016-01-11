@@ -5,7 +5,7 @@ import java.util.List;
 import pl.mgrz.licznik.model.Refuel;
 import pl.mgrz.licznik.model.User;
 
-public interface RefuelDao {
+public interface IRefuelRepository {
 
 	void saveRefuel(User user, Refuel refuel);
 

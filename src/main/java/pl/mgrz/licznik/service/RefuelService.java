@@ -2,16 +2,39 @@ package pl.mgrz.licznik.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import pl.mgrz.licznik.dao.IRefuelRepository;
 import pl.mgrz.licznik.model.Refuel;
 import pl.mgrz.licznik.model.User;
 
-public interface RefuelService {
+@Service("refuelService")
+@Transactional
+public class RefuelService implements IRefuel {
 
-	void saveRefuel(User user, Refuel refuel);
+	@Autowired
+	private IRefuelRepository dao;
 
-	List<Refuel> findAllRefuels();
-
-	void deleteRefuelById(int id);
 	
-	List<Refuel> findRefuelsForUser(int id);
+	public void saveRefuel(User user, Refuel refuel) {
+		dao.saveRefuel(user, refuel);
+	}
+
+	
+	public List<Refuel> findAllRefuels() {
+		return dao.findAllRefuels();
+	}
+
+	public void deleteRefuelById(int id) {
+		dao.deleteRefuelById(id);
+
+	}
+
+	
+	public List<Refuel> findRefuelsForUser(int id) {
+		return dao.findRefuelsForUser(id);
+	}
+
 }

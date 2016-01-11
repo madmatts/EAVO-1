@@ -17,7 +17,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import pl.mgrz.licznik.exception.EmailTakenException;
 import pl.mgrz.licznik.exception.UserAlreadyExistsException;
 import pl.mgrz.licznik.model.User;
 import pl.mgrz.licznik.service.UserService;
@@ -46,6 +49,9 @@ public class UserController {
 			this.service.addUser(user);
 		} catch (UserAlreadyExistsException e) {
 			return "register";
+		} catch (EmailTakenException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		model.addAttribute("username", user.getUsername());
@@ -54,18 +60,34 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/admin**", method = RequestMethod.GET)
-	public String adminPage(Model model) {
+	public ModelAndView adminPage() {
 
-		model.addAttribute("title", "Spring Security + Hibernate Example");
-		model.addAttribute("message", "This page is for ROLE_ADMIN only!");
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Spring Security Custom Login Form");
+		model.addObject("message", "This is protected page!");
+		model.setViewName("admin");
 
-		return "admin";
+		return model;
 
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
-		return "login";
+	public ModelAndView login(
+		@RequestParam(value = "error", required = false) String error,
+		@RequestParam(value = "logout", required = false) String logout) {
+
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Invalid username and password!");
+		}
+
+		if (logout != null) {
+			model.addObject("msg", "You've been logged out successfully.");
+		}
+		model.setViewName("login");
+
+		return model;
+
 	}
 
 	

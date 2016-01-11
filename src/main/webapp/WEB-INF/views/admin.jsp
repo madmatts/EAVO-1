@@ -1,15 +1,22 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@page session="true"%>
-<html>
-<body>
+
+<tiles:insertDefinition name="adminTemplate">
+	<tiles:putAttribute name="body">
+
 	<h1>Title : ${title}</h1>
 	<h1>Message : ${message}</h1>
 
-	<c:url value="/logout" var="logoutUrl" />
+	<c:url value="/j_spring_security_logout" var="logoutUrl" />
+
+		<!-- csrt support -->
 	<form action="${logoutUrl}" method="post" id="logoutForm">
-		<input type="hidden" name="${_csrf.parameterName}"
+		<input type="hidden" 
+			name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
+	
 	<script>
 		function formSubmit() {
 			document.getElementById("logoutForm").submit();
@@ -23,5 +30,5 @@
 		</h2>
 	</c:if>
 
-</body>
-</html>
+	</tiles:putAttribute>
+</tiles:insertDefinition>

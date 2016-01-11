@@ -11,7 +11,7 @@ import pl.mgrz.licznik.model.Refuel;
 import pl.mgrz.licznik.model.User;
 
 @Repository("refuelDao")
-public class RefuelDaoImpl extends AbstractDao implements RefuelDao {
+public class RefuelRepository extends AbstractRepository implements IRefuelRepository {
 
 	public void saveRefuel(User user, Refuel refuel) {
 		refuel.setUser(user);
@@ -31,7 +31,6 @@ public class RefuelDaoImpl extends AbstractDao implements RefuelDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<Refuel> findRefuelsForUser(int id) {
 		
 		List<Refuel> refuels = new ArrayList<Refuel>();

@@ -1,5 +1,6 @@
 package pl.mgrz.licznik.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -35,17 +39,21 @@ public class User {
 	@NotEmpty(message = "Pole Email jest wymagane")
 	@Email(message = "To nie jest prawid³owy adres email!")
 	private String email;
-	
+
 	@NotEmpty(message = "Pole Samochód jest wymagane")
 	@Column(name = "car", nullable = true)
 	private String car;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
-	
+	@ManyToMany
+	@JoinTable(name = "role", joinColumns = @JoinColumn(name = "username", referencedColumnName = "username") )
+	private Collection<Role> roles;
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.REMOVE)
 	private Set<Refuel> refuel = new HashSet<Refuel>(0);
-	
+
+	private boolean enabled;
+	private boolean tokenExpired;
+
 	public Set<Refuel> getRefuel() {
 		return refuel;
 	}
@@ -53,7 +61,7 @@ public class User {
 	public void setRefuel(Set<Refuel> refuel) {
 		this.refuel = refuel;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -93,13 +101,29 @@ public class User {
 	public void setCar(String car) {
 		this.car = car;
 	}
-	
-	public Set<UserRole> getUserRole() {
-		return userRole;
+
+	public Collection<Role> getRoles() {
+		return roles;
 	}
 
-	public void setUserRole(Set<UserRole> userRole) {
-		this.userRole = userRole;
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public boolean isTokenExpired() {
+		return tokenExpired;
+	}
+
+	public void setTokenExpired(boolean tokenExpired) {
+		this.tokenExpired = tokenExpired;
 	}
 
 }

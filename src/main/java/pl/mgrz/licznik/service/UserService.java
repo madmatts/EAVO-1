@@ -6,22 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.mgrz.licznik.dao.UserDao;
+import pl.mgrz.licznik.dao.IUserRepository;
+import pl.mgrz.licznik.exception.EmailTakenException;
 import pl.mgrz.licznik.exception.UserAlreadyExistsException;
 import pl.mgrz.licznik.model.User;
 
-@Service
+@Service("userService")
 @Transactional
 public class UserService {
 
 	@Autowired
-	private UserDao userDAO;
+	private IUserRepository userDAO;
 
-	public void setUserDAO(UserDao userDAO) {
+	public void setUserDAO(IUserRepository userDAO) {
 		this.userDAO = userDAO;
 	}
 
-	public void addUser(User u) throws UserAlreadyExistsException {
+	public void addUser(User u) throws UserAlreadyExistsException, EmailTakenException {
 		this.userDAO.addUser(u);
 	}
 
@@ -43,6 +44,11 @@ public class UserService {
 	@Transactional
 	public User findUserByName(String username) {
 		return this.userDAO.findByUserName(username);
+	}
+	
+	@Transactional
+	public User findByEmail(String email) {
+		return this.userDAO.findByEmail(email);
 	}
 
 	@Transactional

@@ -6,10 +6,10 @@
 	<ul class="nav nav-sidebar">
 		<li><spring:url value="/" var="homeUrl" htmlEscape="true" /> <a
 			href="${homeUrl}">Strona główna</a></li>
-		<li><spring:url value="/user/register" var="registerForm"
+		<li><spring:url value="/account/register" var="registerForm"
 				htmlEscape="true" /> <a href="${registerForm}">Rejestracja</a></li>
-		<li><spring:url value="/user/register" var="registerForm"
-				htmlEscape="true" /> <a href="${registerForm}">#Logowanie</a></li>
+		<li><spring:url value="/account/login" var="registerForm"
+				htmlEscape="true" /> <a href="${registerForm}">Logowanie</a></li>
 	</ul>
 	<ul class="nav nav-sidebar">
 		<li><spring:url value="/refuel/refill" var="refillForm"

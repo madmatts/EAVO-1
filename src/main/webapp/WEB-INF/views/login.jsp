@@ -6,36 +6,46 @@
 <%@page session="true"%>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
-		<html>
-<head>
-<title>Login Page</title>
-</head>
-<body onload='document.loginForm.username.focus();'>
-	<div id="content">
-		<h3>Login with Username and Password</h3>
+		<h2>Login Form</h2>
+		<c:set var="loginUrl">
+			<c:url value="/j_spring_security_check" />
+		</c:set>
+		<div style="margin: auto; margin-bottom: 40px; max-width: 350px"
+			align="center">
+			<div class="form-group">
+				<h3>Zaloguj</h3>
+				<form action="<c:url value='/j_spring_security_check' />" method='POST'>
+					<div class="control-group">
+						<!-- Username -->
+						<label class="control-label">Nazwa użytkownika</label>
+						<div class="controls">
+							<input class="form-control" type="text" name="username" /> 
+							<p>
+							</p>
+						</div>
+					</div>
 
-		<form method="post" action="/licznik/user/login">
-			<table>
-				<tr>
-					<td>User:</td>
-					<td><input type="text" id="username" name="username" placeholder="Username"/></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type="password" id="password" name="password" placeholder="Password"/></td>
-				</tr>
-				<tr>
-					<td colspan="2"><button id="loginButton" value="Login" /></td>
-				</tr>
-			</table>
+					<div class="control-group">
+						<!-- Password -->
+						<label class="control-label">Hasło</label>
+						<div class="controls">
+							<input class="form-control" type="password" name="password" /> 
+							<p>
+							</p>
+						</div>
+					</div>
 
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-
-		</form>
-	</div>
-
-</body>
-		</html>
+					<div class="control-group">
+						<!-- Button -->
+						<div class="controls">
+							<button class="btn btn-success">Loguj</button>
+						</div>
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+				</form>
+				<p class="text-danger">${errorMsg}</p>
+			</div>
+		</div>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

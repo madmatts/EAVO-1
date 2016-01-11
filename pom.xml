@@ -144,6 +144,16 @@
 			</plugins>
 		</pluginManagement>
 		<finalName>licznik</finalName>
+		<testResources>
+			<!-- Not sure if including resource from main is needed -->
+			<testResource>
+				<directory>${project.basedir}/src/main/resources</directory>
+			</testResource>
+
+			<testResource>
+				<directory>${project.basedir}/src/test/resources</directory>
+			</testResource>
+		</testResources>
 	</build>
 	<profiles>
 		<profile>

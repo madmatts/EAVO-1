@@ -7,22 +7,26 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import pl.mgrz.licznik.exception.EmailTakenException;
 import pl.mgrz.licznik.exception.UserAlreadyExistsException;
+import pl.mgrz.licznik.model.Role;
 import pl.mgrz.licznik.model.User;
-import pl.mgrz.licznik.model.UserRole;
 
 @Repository
-public class UserDaoImpl extends AbstractDao implements UserDao {
+public class UserRepository extends AbstractRepository implements IUserRepository {
 
-	public void addUser(User u) throws UserAlreadyExistsException {
+	public void addUser(User u) throws UserAlreadyExistsException, EmailTakenException {
 		Session session = getSession();
-		boolean exists = session
-				.createQuery("FROM User WHERE username = :username")
+		boolean userExists = session.createQuery("FROM User WHERE username = :username")
 				.setParameter("username", u.getUsername()).list().size() > 0;
-		if (exists)
+		boolean emailTaken = session.createQuery("FROM User WHERE email = :email").setParameter("email", u.getEmail())
+				.list().size() > 0;
+		if (userExists)
 			throw new UserAlreadyExistsException("UserAlreadyExist");
+		if (emailTaken)
+			throw new EmailTakenException("EmailTakenException");
 		session.persist(u);
-		UserRole ur = new UserRole(u, "ROLE_USER");
+		Role ur = new Role(u, "ROLE_USER");
 		session.persist(ur);
 	}
 
@@ -31,8 +35,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
 		List<User> users = new ArrayList<User>();
 
-		users = getSession().createQuery("from User where username=?")
-				.setParameter(0, username).list();
+		users = getSession().createQuery("from User where username=?").setParameter(0, username).list();
 
 		if (users.size() > 0) {
 			return users.get(0);
@@ -52,18 +55,16 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	public void removeUser(int id) {
 		Session session = getSession();
 
-		Query query = session.createQuery("from User where id=?").setParameter(
-				0, id);
+		Query query = session.createQuery("from User where id=?").setParameter(0, id);
 		query.list().get(0);
 
 		User u = (User) query.list().get(0);
 
-		query = session.createQuery("from UserRole where user_id=?")
-				.setParameter(0, id);
+		query = session.createQuery("from Roles where user_id=?").setParameter(0, id);
 		@SuppressWarnings("unchecked")
-		List<UserRole> roles = query.list();
+		List<Role> roles = query.list();
 
-		for (UserRole ur : roles) {
+		for (Role ur : roles) {
 			session.delete(ur);
 		}
 
@@ -76,8 +77,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	public User getUserById(int id) {
 		Session session = getSession();
 
-		Query query = session.createQuery("from User where id=?").setParameter(
-				0, id);
+		Query query = session.createQuery("from User where id=?").setParameter(0, id);
 		query.list().get(0);
 
 		User u = (User) query.list().get(0);
@@ -87,8 +87,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
 	public void updateUser(User u) {
 		Session session = getSession();
-		Query query = session.createQuery("from User where username=?")
-				.setParameter(0, u.getUsername());
+		Query query = session.createQuery("from User where username=?").setParameter(0, u.getUsername());
 		User user = (User) query.list().get(0);
 
 		user.setEmail(u.getEmail());
@@ -117,14 +116,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	public boolean checkIfAdmin(int id) {
 		Session session = getSession();
 
-		List<UserRole> result = new ArrayList<UserRole>();
+		List<Role> result = new ArrayList<Role>();
 		List<String> roles = new ArrayList<String>();
 
-		Query query = session.createQuery("from UserRole where user_id=?")
-				.setParameter(0, id);
+		Query query = session.createQuery("from Roles where user_id=?").setParameter(0, id);
 		result = query.list();
 
-		for (UserRole ur : result) {
+		for (Role ur : result) {
 			roles.add(ur.getRole());
 		}
 
@@ -132,15 +130,26 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<User> searchUsers(String username) {
-		
+
 		username = "%" + username + "%";
-		
-		Query query = getSession().createQuery("from User where username like ?")
-				.setParameter(0, username);
+
+		Query query = getSession().createQuery("from user where username like ?").setParameter(0, username);
 		List<User> result = query.list();
-		
+
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public User findByEmail(String email) {
+		List<User> users = new ArrayList<User>();
+
+		users = getSession().createQuery("from user where email=?").setParameter(0, email).list();
+
+		if (users.size() > 0) {
+			return users.get(0);
+		} else {
+			return null;
+		}
 	}
 }

@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.mgrz.licznik.model.Refuel;
 import pl.mgrz.licznik.model.User;
-import pl.mgrz.licznik.service.RefuelService;
+import pl.mgrz.licznik.service.IRefuel;
 
 @Controller
 @RequestMapping("/refuel")
 public class RefuelController {
 
 	@Autowired
-	private RefuelService service;
+	private IRefuel service;
 
 	@RequestMapping(value = { "/refill" }, method = RequestMethod.GET)
 	public String showRefill(HttpSession session, ModelMap model) {
