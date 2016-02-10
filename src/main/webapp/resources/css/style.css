@@ -1,39 +1,40 @@
+/*noinspection CssUnknownTarget*/
 @import url("http://bootswatch.com/journal/bootstrap.min.css");
 
 body {
-	/* 	color: #dddddd; */
-	padding-top: 60px;
-	font-family: 'Cambay', sans-serif;
+    /* 	color: #dddddd; */
+    padding-top: 60px;
+    font-family: 'Cambay', sans-serif;
 }
 
 .imagebackground {
-	background-image: url('/licznik/resources/images/background.jpg');
-	z-index: -5;
-	
-	display: block;
-	width: 1920px;
-	height: 1080px;
-	
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	-webkit-filter: blur(10px);
-	-moz-filter: blur(10px);
-	-o-filter: blur(10px);
-	-ms-filter: blur(10px);
-	filter: blur(10px);
+    background-image: url('/WEB-INF/resources/images/background.jpg');
+    z-index: -5;
+
+    display: block;
+    width: 1920px;
+    height: 1080px;
+
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
 }
 
 /* .header { */
 /* /* 	color: #dddddd; */
-*
-/
+
+
+
 /* /* 	background-color: #142029; */
 
- 
 
-*
-/
+
+
 /* 	border: solid 1px #ff9900; */
 /* 	border-radius: 0.5em; */
 /* } */
@@ -41,19 +42,14 @@ body {
 /* .content { */
 /* /* 	color: #dddddd; */
 
- 
 
-*
-/
+
 /* 	padding: 10px; */
 /* 	padding-bottom: 20px; Height of the footer element */
 /* 	overflow: hidden; */
 /* /* 	background-color: #142029; */
 
- 
 
-*
-/
 /* 	border: solid 1px #ff9900; */
 /* 	border-radius: 0.5em; */
 /* } */
@@ -65,10 +61,7 @@ body {
 /* 	left: 0; */
 /* /* 	color: #dddddd; */
 
- 
 
-*
-/
 /* 	text-align: center; */
 /* 	width: 100%; */
 /* 	height: 20px; */
