@@ -1,1 +1,0 @@
-<p class="text-center"> Elektroniczny Asystent 2015</p>

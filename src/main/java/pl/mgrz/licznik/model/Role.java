@@ -1,60 +1,47 @@
 package pl.mgrz.licznik.model;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
- 
+
+import javax.persistence.*;
+import java.util.Set;
+
 @Entity
-@Table(name = "role")
-public class Role{
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "role_id", 
-		unique = true, nullable = false)
-	private int roleId;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "username", nullable = false)
-	private User user;
-	
-	@Column(name = "role", nullable = false)
-	private String role;
- 
-	public Role() {
-	}
- 
-	public Role(User user, String role) {
-		this.user = user;
-		this.role = role;
-	}
- 
-	public int getRoleId() {
-		return this.roleId;
-	}
- 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
- 
-	public User getUser() {
-		return this.user;
-	}
- 
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	public String getRole() {
-		return this.role;
-	}
- 
-	public void setRole(String role) {
-		this.role = role;
-	}
- 
+@Table(name="roles")
+public class Role {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    private String role;
+
+    @OneToMany(cascade= CascadeType.ALL)
+    @JoinTable(name="user_roles",
+            joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")}
+    )
+    private Set<User> userRoles;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Set<User> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<User> userRoles) {
+        this.userRoles = userRoles;
+    }
+
 }
