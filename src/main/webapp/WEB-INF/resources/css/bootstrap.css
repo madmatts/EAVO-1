@@ -1167,7 +1167,7 @@ body {
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
-    background-color: #fff;
+    background-color: #2d3c65;
 }
 
 input,
@@ -7086,6 +7086,7 @@ button.close {
 }
 
 @media all and (transform-3d), (-webkit-transform-3d) {
+    /*noinspection ALL*/
     .carousel-inner > .item {
         -webkit-transition: -webkit-transform .6s ease-in-out;
         -o-transition: -o-transform .6s ease-in-out;
@@ -7415,6 +7416,7 @@ button.close {
     position: fixed;
 }
 
+/*noinspection ALL*/
 @-ms-viewport {
     width: device-width;
 }

@@ -1,12 +1,13 @@
 /*noinspection CssUnknownTarget*/
 /*@import url('http://bootswatch.com/journal/bootstrap.min.css');*/
-@import url("http://bootswatch.com/sandstone/bootstrap.min.css");
+/*@import url("http://bootswatch.com/sandstone/bootstrap.min.css");*/
+@import url("http://bootswatch.com/flatly/bootstrap.min.css");
 
 body {
 	background-image: url("/WEB-INF/resources/images/header-bg.jpg");
 	width: 1900px;
 	height: 1250px;
 	position: fixed;
-	padding-top: 60px;
-	font-family: 'Cambay', sans-serif;
+	padding-top: 70px;
+	/*font-family: 'Cambay', sans-serif;*/
 }
