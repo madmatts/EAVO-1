@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.mgrz.licznik.model.User;
 import pl.mgrz.licznik.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -19,25 +20,37 @@ public class GuestController {
 
     @Autowired
     private UserService service;
+    @Autowired
+    private HttpSession session;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginForm(Model model) {
+        if("true".equals(session.getAttribute("logged"))){
+            return "redirect:/account/mypage";
+        }
         return "login";
     }
 
-    @RequestMapping(value = "/error-login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/logout", method = RequestMethod.GET)
+    public String loginFormAfterLogout(Model model) {
+
+        String message = "You have been logged out correctly!";
+        model.addAttribute("message", message);
+        return "login";
+    }
+
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
     public String invalidLogin(Model model) {
         model.addAttribute("error", true);
         return "login";
     }
 
-    @RequestMapping(value = "/success", method = RequestMethod.GET)
-    public String loggedIn(Model model) {
-        return "success";
-    }
-
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String registerForm(Model model, Map<String, Object> map) {
+        if("true".equals(session.getAttribute("logged"))){
+            return "redirect:/account/mypage";
+        }
         User userForm = new User();
         map.put("userForm", userForm);
         return "register";

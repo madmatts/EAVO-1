@@ -1,4 +1,8 @@
 body {
+    background-image: url("/WEB-INF/resources/images/header-bg.jpg");
+    width: 1900px;
+    height: 1250px;
+    background-position: center;
     overflow-x: hidden;
     font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <head>
-    <title>EAVO - Login Page</title>
+    <title>EAVO - Register Page</title>
 </head>
 <tiles:insertDefinition name="template">
     <tiles:putAttribute name="body">

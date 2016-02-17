@@ -11,13 +11,16 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <http auto-config="true">
+        <session-management>
+            <concurrency-control max-sessions="1" expired-url="/expired"/>
+        </session-management>
 
         <intercept-url pattern="/sec/moderation" access="ROLE_MODERATOR"/>
         <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
         <intercept-url pattern="/account/*" access="ROLE_USER"/>
 
         <form-login login-page="/login"
-                    default-target-url="/success"
+                    default-target-url="/account/success"
                     authentication-failure-url="/error"/>
         <logout logout-success-url="/"/>
 

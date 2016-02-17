@@ -4,22 +4,25 @@
 
 <html>
 <head>
+    <title>EAVO - Electronic Assistans for Vehicle Owner</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
-    <link rel="shortcut icon" type="image/png" href="/resources/img/favicon.ico"/>
-
-    <%--<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css"/>--%>
-    <%--<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css"/>--%>
+    <link rel="shortcut icon" type="image/png" href="/resources/images/favicon.ico"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/WEB-INF/resources/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/WEB-INF/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <tiles:insertAttribute name="header"/>
 <div class="container">
     <tiles:insertAttribute name="body"/>
 
+</div>
+<div class="container">
     <tiles:insertAttribute name="footer"/>
 </div>
+
 </body>
 </html>
