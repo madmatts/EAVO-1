@@ -21,7 +21,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right pull-right">
                 <c:if test="${logged == true}">
-                    <li class=""><a href="/account/mypage"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> My Page</a></li>
+                    <li class=""><a href="/account/profile"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> My Page</a></li>
                     <li class=""><a href="/account/logout">Logout</a></li>
                 </c:if>
             </ul>

@@ -69,7 +69,7 @@ public class AccountController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String viewProfil(HttpSession session, Model model) {
-        if(session.getAttribute("logged").equals(false)){
+        if (session.getAttribute("logged").equals(false)) {
             return "redirect: /login";
         }
         model.addAttribute("username", session.getAttribute("username"));
@@ -88,5 +88,20 @@ public class AccountController {
         }
         return "myprofile";
     }
+
+    @RequestMapping(value = "/remove", method = RequestMethod.GET)
+    public String removeAccount(HttpSession session, Model model) {
+        model.addAttribute("username", session.getAttribute("username"));
+        model.addAttribute("user", session.getAttribute("user"));
+        return "removeAccount";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editAccount(HttpSession session, Model model) {
+        model.addAttribute("username", session.getAttribute("username"));
+        model.addAttribute("user", session.getAttribute("user"));
+        return "editAccount";
+    }
+
 
 }

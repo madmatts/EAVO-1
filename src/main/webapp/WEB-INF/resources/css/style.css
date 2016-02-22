@@ -4,10 +4,29 @@
 @import url("http://bootswatch.com/flatly/bootstrap.min.css");
 
 body {
-	background-image: url("/WEB-INF/resources/images/header-bg.jpg");
-	width: 1900px;
-	height: 1250px;
-	position: fixed;
 	padding-top: 70px;
 	/*font-family: 'Cambay', sans-serif;*/
+}
+
+.background-image {
+	position: fixed;
+    margin: auto;
+    margin-top: -70px;
+	left: 0;
+	right: 0;
+	z-index: -1;
+
+	display: block;
+	background-image: url('http://www.garageliving.com/blog/wp-content/uploads/2015/03/Garage-Rend_03_A.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    width: 3500px;
+	height: 1600px;
+
+	-webkit-filter: blur(15px);
+	-moz-filter: blur(15px);
+	-o-filter: blur(15px);
+	-ms-filter: blur(15px);
+	filter: blur(15px);
 }

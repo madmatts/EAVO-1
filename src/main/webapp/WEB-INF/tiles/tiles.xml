@@ -5,9 +5,16 @@
 <tiles-definitions>
 
     <definition name="template" template="/WEB-INF/resources/template/layout.jsp">
-        <put-attribute name="header" value="/WEB-INF/resources/template/header.jsp" />
-        <put-attribute name="body" />
-        <put-attribute name="footer" value="/WEB-INF/resources/template/footer.jsp" />
+        <put-attribute name="header" value="/WEB-INF/resources/template/header.jsp"/>
+        <put-attribute name="body"/>
+        <put-attribute name="footer" value="/WEB-INF/resources/template/footer.jsp"/>
+    </definition>
+
+    <definition name="dashboard" template="/WEB-INF/resources/template/dashboard.jsp">
+        <put-attribute name="header" value="/WEB-INF/resources/template/header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/resources/template/menu.jsp"/>
+        <put-attribute name="body"/>
+        <put-attribute name="footer" value="/WEB-INF/resources/template/footer.jsp"/>
     </definition>
 
 </tiles-definitions>
