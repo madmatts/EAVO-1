@@ -20,7 +20,7 @@
                 <li><a href="#Consumption">Consumption</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right pull-right">
-                <c:if test="${role == 'admin'}">
+                <c:if test="${role.equalsIgnoreCase('ADMIN')}">
                     <li class=""><a href="/admin/userlist"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Admin</a></li>
                 </c:if>
                 <c:if test="${logged == true}">
