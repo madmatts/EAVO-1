@@ -6,9 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.mgrz.licznik.dao.UserDAO;
 import pl.mgrz.licznik.model.User;
 
-/**
- * Created by MadMattz on 02.02.2016.
- */
+import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -18,6 +17,14 @@ public class UserServiceImpl implements UserService {
 
     public User getUser(String login) {
         return userDAO.getUser(login);
+    }
+
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
+    }
+
+    public void removeUser(String login) {
+        userDAO.removeUser(login);
     }
 
     public void registerUser(User user) {

@@ -2,9 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
-		<title>Registration Success</title>
-		</head>
-		<body style="color: #dddddd;">
 			<div align="center">
 				<table border="1">
 					<tr>
@@ -20,7 +17,5 @@
 					</tr>
 				</table>
 			</div>
-		</body>
-		</html>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

@@ -11,9 +11,6 @@ import pl.mgrz.licznik.service.RoleService;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by MadMattz on 02.02.2016.
- */
 @Repository
 public class UserDAOImpl implements UserDAO {
 
@@ -36,6 +33,19 @@ public class UserDAOImpl implements UserDAO {
             return userList.get(0);
         else
             return null;
+    }
+
+    public List<User> getAllUsers() {
+        List<User> userList = new ArrayList<User>();
+        Query query = openSession().createQuery("from User");
+        userList = query.list();
+
+        return userList;
+    }
+
+    public void removeUser(String login) {
+//        User user = getUser(login);
+//        openSession().delete(user);
     }
 
     public void registerUser(User user) {

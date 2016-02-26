@@ -24,7 +24,7 @@
                         <label class="col-sm-2 control-label" for="j_username">Login</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="j_username" id="j_username" placeholder="Enter login"
-                                   type="login">
+                                   type="login" autofocus>
                         </div>
                     </div>
                     <div class="form-group">

@@ -20,9 +20,12 @@
                 <li><a href="#Consumption">Consumption</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right pull-right">
+                <c:if test="${role == 'admin'}">
+                    <li class=""><a href="/admin/userlist"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Admin</a></li>
+                </c:if>
                 <c:if test="${logged == true}">
-                    <li class=""><a href="/account/profile"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> My Page</a></li>
-                    <li class=""><a href="/account/logout">Logout</a></li>
+                    <li class=""><a href="/account/profile"><i class="fa fa-wrench"></i></span> My Page</a></li>
+                    <li class=""><a href="/account/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                 </c:if>
             </ul>
         </div>

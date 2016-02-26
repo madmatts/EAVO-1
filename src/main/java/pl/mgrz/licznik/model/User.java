@@ -5,10 +5,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
-/**
- * Created by MadMattz on 02.02.2016.
- */
 @Entity
 @Table(name = "users")
 public class User {
@@ -18,6 +16,7 @@ public class User {
     private Integer id;
 
     @NotEmpty
+    @Column(unique = true)
     @Size(min=2, max=30)
     private String login;
 
@@ -34,7 +33,15 @@ public class User {
 
     @NotEmpty
     @Email
+    @Column(unique = true)
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_vehicles",
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")}
+    )
+    private Set<Vehicle> vehicles;
 
     public Integer getId() {
         return id;
@@ -76,4 +83,11 @@ public class User {
         this.email = email;
     }
 
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
 }

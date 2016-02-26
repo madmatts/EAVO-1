@@ -26,7 +26,6 @@ import java.io.IOException;
 @RequestMapping(value = "/account")
 public class AccountController {
 
-
     @Autowired
     private HttpSession session;
     @Autowired
@@ -39,6 +38,8 @@ public class AccountController {
             session.setAttribute("username", user.getUsername());
             session.setAttribute("user", userService.getUser(user.getUsername()));
             session.setAttribute("logged", true);
+            session.setAttribute("role", userService.getUser(user.getUsername()).getRole().getRole());
+//            model.addAttribute("role", userService.getUser(user.getUsername()).getRole().getRole());
             model.addAttribute("login", session.getAttribute("username"));
             model.addAttribute("logged", session.getAttribute("logged"));
         } else {
@@ -91,6 +92,7 @@ public class AccountController {
 
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
     public String removeAccount(HttpSession session, Model model) {
+        userService.removeUser((String) session.getAttribute("username"));
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("user", session.getAttribute("user"));
         return "removeAccount";
@@ -102,6 +104,8 @@ public class AccountController {
         model.addAttribute("user", session.getAttribute("user"));
         return "editAccount";
     }
+
+
 
 
 }

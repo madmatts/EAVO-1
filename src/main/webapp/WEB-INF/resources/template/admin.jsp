@@ -1,10 +1,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-
-<html>
 <head>
-    <title>EAVO - Electronic Assistans for Vehicle Owner</title>
+    <title>EAVO - Admin Panel</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,13 +15,9 @@
 <body>
 <tiles:insertAttribute name="header"/>
 <div class="container">
+    <tiles:insertAttribute name="adminMenu"/>
     <tiles:insertAttribute name="body"/>
-
 </div>
 <div class="container">
     <tiles:insertAttribute name="footer"/>
 </div>
-
-
-</body>
-</html>
