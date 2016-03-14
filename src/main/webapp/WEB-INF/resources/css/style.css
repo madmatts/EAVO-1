@@ -1,11 +1,16 @@
 /*noinspection CssUnknownTarget*/
 /*@import url('http://bootswatch.com/journal/bootstrap.min.css');*/
+/*@import url('http://bootswatch.com/cosmo/bootstrap.min.css');*/
+/*@import url('http://bootswatch.com/darkly/bootstrap.min.css');*/
+/*@import url('http://bootswatch.com/paper/bootstrap.min.css');*/
+/*@import url('http://bootswatch.com/simplex/bootstrap.min.css');*/
+/*@import url('http://bootswatch.com/lumen/bootstrap.min.css');*/
 /*@import url("http://bootswatch.com/sandstone/bootstrap.min.css");*/
 @import url("http://bootswatch.com/flatly/bootstrap.min.css");
 
 body {
 	padding-top: 70px;
-	/*font-family: 'Cambay', sans-serif;*/
+	font-family: 'Cambay', sans-serif;
 }
 
 .background-image {
@@ -29,4 +34,8 @@ body {
 	-o-filter: blur(15px);
 	-ms-filter: blur(15px);
 	filter: blur(15px);
+}
+
+.huge{
+    font-size: 128px;
 }

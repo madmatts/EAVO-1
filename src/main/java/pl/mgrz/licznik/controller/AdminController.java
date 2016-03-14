@@ -42,7 +42,7 @@ public class AdminController {
 
         model.addAttribute("username", user.getLogin());
         model.addAttribute("user", user);
-        return "myprofile";
+        return "viewuser";
     }
 
     @RequestMapping(value = "/remove/{login}", method = RequestMethod.GET)

@@ -1,13 +1,14 @@
 package pl.mgrz.licznik.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.mgrz.licznik.service.UserService;
+import pl.mgrz.licznik.model.Refill;
+import pl.mgrz.licznik.service.RefillService;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,22 +23,18 @@ public class ConsumptionController {
     @Autowired
     HttpSession session;
     @Autowired
-    private UserService userService;
+    private RefillService refillService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerConsumption(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (user != null) {
-            session.setAttribute("username", user.getUsername());
-            session.setAttribute("user", userService.getUser(user.getUsername()));
-            session.setAttribute("logged", true);
-            model.addAttribute("login", session.getAttribute("username"));
-            model.addAttribute("logged", session.getAttribute("logged"));
-        } else {
-            model.addAttribute("message", "You have to log in to access this page.");
-            return "redirect:/login";
-        }
+    @RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
+    public String registerConsumption(@PathVariable int id, Model model) {
+        model.addAttribute("id", id);
         return "registerConsumption";
+    }
+
+    @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
+    public String postConsumption(@ModelAttribute("refillForm") Refill r, @PathVariable int id) {
+        refillService.addRefill(r,id);
+        return "redirect:/vehicle/vehicles";
     }
 
 }

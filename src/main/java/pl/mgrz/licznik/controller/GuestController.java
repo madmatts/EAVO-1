@@ -66,4 +66,9 @@ public class GuestController {
         model.addAttribute("error", true);
         return "register";
     }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String registerAction() {
+        return "error";
+    }
 }

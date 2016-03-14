@@ -13,13 +13,13 @@
                     <div class="col-md-4">
                         <dl class="list list-group">
                             <dt>Vehicle type</dt>
-                            <dd class="list-group-item">Car</dd>
+                            <dd class="list-group-item">${vehicle.type}</dd>
                             <dt>Model</dt>
-                            <dd class="list-group-item">Alfa Romeo 159</dd>
+                            <dd class="list-group-item">${vehicle.model}</dd>
                             <dt>Year</dt>
-                            <dd class="list-group-item">2008</dd>
+                            <dd class="list-group-item">${vehicle.year}</dd>
                             <dt>VIN</dt>
-                            <dd class="list-group-item">AR1324564132</dd>
+                            <dd class="list-group-item">${vehicle.vin}</dd>
                         </dl>
                     </div>
                     <div class="col-md-4">

@@ -3,7 +3,7 @@
 <head>
     <title>EAVO - Register Page</title>
 </head>
-<tiles:insertDefinition name="template">
+<tiles:insertDefinition name="dashboard">
     <tiles:putAttribute name="body">
         <div id="Register" class="panel text-center">
             <h2>Vehicle </h2>
@@ -13,7 +13,11 @@
                 <form:form role="form" action="/vehicle/add" method="post" commandName="vehicleForm">
                     <div class="form-group">
                         <label for="type">Type</label>
-                        <form:input class="form-control" id="type" placeholder="Enter type" type="text" path="type"/>
+                        <form:select id="type" class="form-control" path="type">
+                            <form:option value="car">Car</form:option>
+                            <form:option value="motorcycle">Motorcycle</form:option>
+                            <form:option value="truck">Truck</form:option>
+                        </form:select>
                     </div>
                     <div class="form-group">
                         <label for="model">Model</label>
@@ -21,7 +25,7 @@
                     </div>
                     <div class="form-group">
                         <label for="engine">Engine</label>
-                        <input class="form-control" id="engine" placeholder="Enter engine" type="text"/>
+                        <form:input class="form-control" id="engine" placeholder="Enter engine" type="text" path="engine"/>
                     </div>
                     <div class="form-group">
                         <label for="year">Year</label>

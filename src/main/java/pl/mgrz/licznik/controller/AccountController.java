@@ -39,12 +39,8 @@ public class AccountController {
             session.setAttribute("user", userService.getUser(user.getUsername()));
             session.setAttribute("logged", true);
             session.setAttribute("role", userService.getUser(user.getUsername()).getRole().getRole());
-//            model.addAttribute("role", userService.getUser(user.getUsername()).getRole().getRole());
             model.addAttribute("login", session.getAttribute("username"));
             model.addAttribute("logged", session.getAttribute("logged"));
-        } else {
-            model.addAttribute("message", "You have to log in to access this page.");
-            return "login";
         }
         return "success";
     }
@@ -73,6 +69,7 @@ public class AccountController {
         if (session.getAttribute("logged").equals(false)) {
             return "redirect: /login";
         }
+        model.addAttribute("avatar", "/resources/images/avatars/default.jpg");
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("user", session.getAttribute("user"));
         return "myprofile";
@@ -83,19 +80,25 @@ public class AccountController {
             @RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty()) {
             BufferedImage src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-            File destination = new File("File directory with file name"); // something like C:/Users/tom/Documents/nameBasedOnSomeId.png
-            ImageIO.write(src, "png", destination);
+            File destination = new File("/WEB-INF/resources/images/avatars");
+            ImageIO.write(src, "jpg", destination);
             //Save the id you have used to create the file name in the DB. You can retrieve the image in future with the ID.
         }
         return "myprofile";
     }
 
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
-    public String removeAccount(HttpSession session, Model model) {
+    public String getRemoveAccountForm(HttpSession session, Model model) {
         userService.removeUser((String) session.getAttribute("username"));
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("user", session.getAttribute("user"));
         return "removeAccount";
+    }
+
+    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    public String removeAccount(HttpSession session, Model model) {
+        userService.removeUser((String) session.getAttribute("username"));
+        return "home";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -104,8 +107,6 @@ public class AccountController {
         model.addAttribute("user", session.getAttribute("user"));
         return "editAccount";
     }
-
-
 
 
 }

@@ -44,8 +44,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public void removeUser(String login) {
-//        User user = getUser(login);
-//        openSession().delete(user);
+        User user = getUser(login);
+        openSession().delete(user);
     }
 
     public void registerUser(User user) {

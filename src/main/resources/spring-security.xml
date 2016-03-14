@@ -9,9 +9,9 @@
 
     <http auto-config="true">
         <session-management>
-            <concurrency-control max-sessions="1" expired-url="/expired"/>
+            <concurrency-control max-sessions="1" expired-url="/login"/>
         </session-management>
-
+        <access-denied-handler error-page="/403" />
         <intercept-url pattern="/sec/moderation" access="ROLE_MODERATOR"/>
         <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
         <intercept-url pattern="/account/*" access="ROLE_USER"/>

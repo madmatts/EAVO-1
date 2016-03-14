@@ -24,7 +24,7 @@ public class User {
     @Size(min=4, max=30)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
@@ -36,7 +36,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_vehicles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")}

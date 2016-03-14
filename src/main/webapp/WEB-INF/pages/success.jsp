@@ -4,15 +4,44 @@
 </head>
 <tiles:insertDefinition name="template">
     <tiles:putAttribute name="body">
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-            <title>Welcome page</title>
-        </head>
-        <body>
-        <h1>Welcome page</h1>
-        <p>${login}, you have successfully logged in.<br/>
-            <a href="${pageContext.request.contextPath}/index">Home page</a><br/></p>
-        </body>
-        </html>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Vehicles
+                </div>
+                <div class="panel-body text-center">
+                    <a href="/vehicle/vehicles"><i class="fa fa-car huge"></i></a></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Refill
+                </div>
+                <div class="panel-body text-center">
+                    <a href="/vehicle/vehicles"><i class="fa fa-tachometer huge"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Statistics
+                </div>
+                <div class="panel-body text-center">
+                    <a href="/vehicle/vehicles"><i class="fa fa-line-chart huge"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Profile
+                </div>
+                <div class="panel-body text-center">
+                    <a href="/vehicle/vehicles"><i class="fa fa-user huge"></i></a>
+                </div>
+            </div>
+        </div>
     </tiles:putAttribute>
 </tiles:insertDefinition>

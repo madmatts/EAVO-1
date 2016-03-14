@@ -2,7 +2,7 @@
 <tiles:insertDefinition name="dashboard">
     <tiles:putAttribute name="body">
         <div class="col-md-9">
-            <div class="panel panel-default">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     Profile Viewer
                 </div>
@@ -13,7 +13,7 @@
                                  src="${pageContext.request.contextPath}/resources/images/avatars/default.jpg" alt="...">
                         </div>
                         <div class="col-md-9">
-                            <div class="panel panel-default">
+                            <div class="panel panel-primary">
                                 <div class="panel-body">
                                     <div class="col-xs-6 col-lg-9">
                                         <div class="col-xs-6 col-lg-3">
@@ -31,6 +31,13 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a href="/admin/edituser">
+                                <button class=" btn btn-xs btn-info">Edit</button>
+                            </a>
                         </div>
                     </div>
                 </div>

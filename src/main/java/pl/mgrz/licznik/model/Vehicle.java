@@ -1,8 +1,7 @@
 package pl.mgrz.licznik.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "vehicle")
@@ -11,10 +10,8 @@ public class Vehicle {
     @GeneratedValue
     private int id;
 
-    @NotEmpty
     private String type;
 
-    @NotEmpty
     private String model;
 
     private String engine;
@@ -23,12 +20,19 @@ public class Vehicle {
 
     private String vin;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_vehicles",
             joinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")}
     )
     private User user;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_vehicles",
+            joinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "refill_id", referencedColumnName = "id")}
+    )
+    private Set<Refill> refill;
 
     public int getId() {
         return id;
@@ -84,5 +88,13 @@ public class Vehicle {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Refill> getRefill() {
+        return refill;
+    }
+
+    public void setRefill(Set<Refill> refill) {
+        this.refill = refill;
     }
 }
