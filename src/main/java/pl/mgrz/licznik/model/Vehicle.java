@@ -27,8 +27,8 @@ public class Vehicle {
     )
     private User user;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_vehicles",
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinTable(name = "vehicle_refill",
             joinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "refill_id", referencedColumnName = "id")}
     )

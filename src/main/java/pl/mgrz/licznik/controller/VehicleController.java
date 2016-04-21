@@ -29,7 +29,8 @@ public class VehicleController {
 
     @RequestMapping(value = "/vehicles", method = RequestMethod.GET)
     public String viewVehiclesList(Model model) {
-        model.addAttribute("vehiclesList", vehicleService.getVehiclesList());
+        User u = (User) session.getAttribute("user");
+        model.addAttribute("vehiclesList", vehicleService.getVehiclesListByUser(u.getId()));
 
         return "vehiclesList";
     }

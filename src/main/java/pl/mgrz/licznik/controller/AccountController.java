@@ -42,7 +42,7 @@ public class AccountController {
             model.addAttribute("login", session.getAttribute("username"));
             model.addAttribute("logged", session.getAttribute("logged"));
         }
-        return "success";
+        return "redirect:/account/mypage";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

@@ -11,6 +11,8 @@
 body {
 	padding-top: 70px;
 	font-family: 'Cambay', sans-serif;
+	/*font-family: 'Raleway', sans-serif;*/
+    /*font-family: 'Oswald', sans-serif;*/
 }
 
 .background-image {
@@ -38,4 +40,20 @@ body {
 
 .huge{
     font-size: 128px;
+}
+
+.row-default {
+	color: rgba(45, 60, 101, 0.93);
+	background-color: rgba(45, 60, 101, 0.04);
+	border-color: rgba(45, 60, 101, 0.2);
+}
+
+ul.list-default{
+	list-style-type: none;
+
+}
+
+.list-inline{
+	float: left;
+	margin: 10px;
 }

@@ -11,7 +11,7 @@ public class Refill {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private int id;
 
     private long mileage;
 
@@ -35,54 +35,6 @@ public class Refill {
 
     private String type;
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getFuelStation() {
-        return fuelStation;
-    }
-
-    public void setFuelStation(String fuelStation) {
-        this.fuelStation = fuelStation;
-    }
-
-    public double getPricePerLitre() {
-        return pricePerLitre;
-    }
-
-    public void setPricePerLitre(double pricePerLitre) {
-        this.pricePerLitre = pricePerLitre;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
-    public void setVolume(double volume) {
-        this.volume = volume;
-    }
-
-    public long getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(long mileage) {
-        this.mileage = mileage;
-    }
-
     public Vehicle getVehicle() {
         return vehicle;
     }
@@ -97,5 +49,61 @@ public class Refill {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public long getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(long mileage) {
+        this.mileage = mileage;
+    }
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPricePerLitre() {
+        return pricePerLitre;
+    }
+
+    public void setPricePerLitre(double pricePerLitre) {
+        this.pricePerLitre = pricePerLitre;
+    }
+
+    public String getFuelStation() {
+        return fuelStation;
+    }
+
+    public void setFuelStation(String fuelStation) {
+        this.fuelStation = fuelStation;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

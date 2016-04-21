@@ -1,22 +1,20 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <head>
     <title>EAVO - Register Page</title>
 </head>
 <tiles:insertDefinition name="dashboard">
     <tiles:putAttribute name="body">
-        <div id="Register" class="panel text-center">
-            <h2>Vehicle </h2>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-4 text-center">
+        <div id="Register" class="col-md-9">
+            <h2>Vehicle</h2>
+            <div class="col-md-8 col-md-offset-2">
                 <form:form role="form" action="/vehicle/add" method="post" commandName="vehicleForm">
                     <div class="form-group">
                         <label for="type">Type</label>
                         <form:select id="type" class="form-control" path="type">
-                            <form:option value="car">Car</form:option>
-                            <form:option value="motorcycle">Motorcycle</form:option>
-                            <form:option value="truck">Truck</form:option>
+                            <form:option value="Samochód">Car</form:option>
+                            <form:option value="Motocykl">Motorcycle</form:option>
+                            <form:option value="Dostwczy">Truck</form:option>
                         </form:select>
                     </div>
                     <div class="form-group">
@@ -35,7 +33,9 @@
                         <label for="vin">VIN</label>
                         <form:input class="form-control" id="vin" placeholder="Enter vin" type="text" path="vin"/>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
                 </form:form>
                 <p></p>
             </div>

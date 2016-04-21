@@ -23,9 +23,11 @@
 
     </http>
 
+    <beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
     <authentication-manager>
         <authentication-provider user-service-ref="customUserDetailsService">
-            <password-encoder hash="plaintext"/>
+            <password-encoder ref="bcryptEncoder"/>
         </authentication-provider>
     </authentication-manager>
 
@@ -49,6 +51,8 @@
         </beans:property>
         <beans:property name="order" value="0"/>
     </beans:bean>
+
+
 
     <beans:bean id="multipartResolver"
                 class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>

@@ -20,10 +20,6 @@
                         <form:input class="form-control" id="password" placeholder="Enter password" type="password" path="password"/>
                     </div>
                     <div class="form-group">
-                        <label for="password2">Password confirmation</label>
-                        <input class="form-control" id="password2" placeholder="Repeat password" type="password"/>
-                    </div>
-                    <div class="form-group">
                         <label for="email">Email address</label>
                         <form:input class="form-control" id="email" placeholder="Enter email" type="email" path="email"/>
                     </div>

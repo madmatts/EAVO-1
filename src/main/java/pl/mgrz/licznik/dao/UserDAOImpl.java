@@ -4,6 +4,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import pl.mgrz.licznik.model.User;
 import pl.mgrz.licznik.service.RoleService;
@@ -19,6 +20,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     private Session openSession() {
         return sessionFactory.getCurrentSession();
@@ -49,6 +53,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public void registerUser(User user) {
+        System.out.println(user.getPassword());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(roleService.getRole(3));
         openSession().persist(user);
     }
