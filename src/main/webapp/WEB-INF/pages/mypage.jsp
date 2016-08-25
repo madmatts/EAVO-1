@@ -2,7 +2,7 @@
 <head>
     <title>EAVO - Welcome</title>
 </head>
-<tiles:insertDefinition name="template">
+<tiles:insertDefinition name="dashboard">
     <tiles:putAttribute name="body">
         <div class="col-md-3">
             <div class="panel panel-default">

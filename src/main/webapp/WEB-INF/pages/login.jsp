@@ -1,43 +1,106 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <head>
+    <link rel="stylesheet" type="text/css" href="/resources/vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/Gente/css/custom.css">
+    <meta charset="utf-8">
     <title>EAVO - Login Page</title>
 </head>
-<tiles:insertDefinition name="template">
-    <tiles:putAttribute name="body">
-        <div id="loginarea" class="panel text-center">
-            <h2>Login area</h2>
-        </div>
+<body style="background:#F7F7F7;">
 
-        <div class="row">
-            <c:if test="${error == true}">
-                <div class="alert alert-danger" role="alert">Invalid login or password.</div>
+<div class="">
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
+    <div id="wrapper">
+        <div id="login" class=" form">
+            <c:if test="${afterpost}">
+                <div class="alert alert-${alarmtype} alert-dismissible fade in" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span>
+                    </button>
+                    <strong>${message}</strong>
+                </div>
             </c:if>
-            <c:if test="${message.length() > 0}">
-                <div class="alert alert-success" role="alert">${message}</div>
-            </c:if>
-            <div class="col-sm-6 col-sm-offset-3 text-center">
-
-                <form class="form-horizontal" role="form" method="post"
+            <section class="login_content">
+                <form role="form" method="post"
                       action="<c:url value="j_spring_security_check"/>">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="j_username">Login</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" name="j_username" id="j_username" placeholder="Enter login"
-                                   type="login" autofocus>
+                    <h1>Login Form</h1>
+                    <div>
+                        <input type="text" class="form-control" name="j_username" id="j_username" placeholder="Username" required=""/>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" name="j_password" id="j_password" placeholder="Password" required=""/>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-default submit">Log in</button>
+                        <a class="reset_pass" href="#">Lost your password?</a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+
+                        <p class="change_link">New to site?
+                            <a href="${pageContext.request.contextPath}/register" class="to_register"> Create Account </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <br/>
+                        <div>
+                            <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Electronic Assistant of Vehicle User</h1>
+
+                            <p>2015 All Rights Reserved. EAVO Privacy and Terms</p>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="j_password">Password</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" name="j_password" id="j_password" placeholder="Enter password"
-                                   type="password">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <p></p>
-            </div>
+            </section>
         </div>
-    </tiles:putAttribute>
-</tiles:insertDefinition>
+
+        <div id="register" class=" form">
+            <section class="login_content">
+                <form>
+                    <h1>Create Account</h1>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Username" required=""/>
+                    </div>
+                    <div>
+                        <input type="email" class="form-control" placeholder="Email" required=""/>
+                    </div>
+                    <div>
+                        <input type="password" class="form-control" placeholder="Password" required=""/>
+                    </div>
+                    <div>
+                        <a class="btn btn-default submit" href="index.html">Submit</a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+
+                        <p class="change_link">Already a member ?
+                            <a href="#tologin" class="to_register"> Log in </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <br/>
+                        <div>
+                            <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Gentelella Alela!</h1>
+
+                            <p>©2015 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="/resources/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="/resources/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/resources/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="/resources/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="/resources/vendors/iCheck/icheck.min.js"></script>
+<!-- PNotify -->
+</body>
+<%--</tiles:putAttribute>--%>
+<%--</tiles:insertDefinition>--%>

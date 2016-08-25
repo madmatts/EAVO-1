@@ -1,44 +1,143 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <head>
     <title>EAVO - Register Page</title>
+    <meta charset="utf-8"/>
 </head>
 <tiles:insertDefinition name="dashboard">
     <tiles:putAttribute name="body">
-        <div id="Register" class="col-md-9">
-            <h2>Vehicle</h2>
-            <div class="col-md-8 col-md-offset-2">
-                <form:form role="form" action="/vehicle/add" method="post" commandName="vehicleForm">
-                    <div class="form-group">
-                        <label for="type">Type</label>
-                        <form:select id="type" class="form-control" path="type">
-                            <form:option value="Samochód">Car</form:option>
-                            <form:option value="Motocykl">Motorcycle</form:option>
-                            <form:option value="Dostwczy">Truck</form:option>
-                        </form:select>
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>
+                        Add vehicle
+                    </h3>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Vehicle
+                                <small>Add vehicle to your account</small>
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <c:if test="${afterpost}">
+                                <div class="alert alert-${alarmtype} alert-dismissible fade in" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span>
+                                    </button>
+                                    <strong>${message}</strong>
+                                </div>
+                            </c:if>
+                            <form class="form-horizontal form-label-left" action="/vehicle/add" method="post" novalidate="" modelAttribute="vehicle">
+                                <span class="section">Vehicle </span>
+
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Brand <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input id="brand" class="form-control col-md-7 col-xs-12" name="brand"
+                                               placeholder="Opel" required="required" type="text" path="brand"/>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class=" control-label col-md-3 col-sm-3 col-xs-12" for="model">Model <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="model" name="model"
+                                               placeholder="Vectra" required="required" class="form-control col-md-7 col-xs-12" path="model"/>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="engine">Engine <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="engine" name="engine"
+                                               placeholder="1.8l" required="required" class="form-control col-md-7 col-xs-12" path="engine"/>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="engine">Vin number <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="vin"
+                                               placeholder="WOL12345678901112" required="required" class="form-control col-md-7 col-xs-12" name="vin"/>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Produtcion date</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" placeholder="dd/MM/yyyy" name="productionDate"/>
+                                        <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-3">Registration Date</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" placeholder="dd/MM/yyyy" name="firstRegistrationDate"/>
+                                        <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="registrationNumber">Registration number <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="registrationNumber" name="registrationNumber"
+                                               placeholder="EP12345" required="required" class="form-control col-md-7 col-xs-12" path="registrationNumber"/>
+                                    </div>
+                                </div>
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fueltype">Fuel type<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select id="fueltype" class="form-control" required name="fueltype">
+                                            <c:forEach var="type" items="${fuelTypeList}">
+                                                <option value="${type.toString()}">${type.toString()}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-md-offset-3">
+                                        <button type="reset" class="btn btn-primary">Cancel</button>
+                                        <button id="submit" type="submit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="model">Model</label>
-                        <form:input class="form-control" id="model" placeholder="Enter model" type="text" path="model"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="engine">Engine</label>
-                        <form:input class="form-control" id="engine" placeholder="Enter engine" type="text" path="engine"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="year">Year</label>
-                        <form:input class="form-control" id="year" placeholder="Enter year" type="text" path="year"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="vin">VIN</label>
-                        <form:input class="form-control" id="vin" placeholder="Enter vin" type="text" path="vin"/>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form:form>
-                <p></p>
+                </div>
             </div>
         </div>
+
     </tiles:putAttribute>
 </tiles:insertDefinition>
+
+
+<!-- jquery.inputmask -->
+<script src="/resources/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+
+<!-- jquery.inputmask -->
+<script>
+    $(document).ready(function () {
+        $(":input").inputmask();
+    });
+</script>
+<!-- /jquery.inputmask -->
