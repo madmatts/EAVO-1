@@ -1,33 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> EAVO</a>
-        </div>
-        <div class="collapse navbar-collapse ">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <c:if test="${logged != true}">
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                </c:if>
-                <li><a href="#Consumption">Consumption</a></li>
+<!-- top navigation -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav class="" role="navigation">
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <img src="/resources/images/favicon.ico" alt="">${username}
+                        <span class=" fa fa-angle-down"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li><a href="/account/myprofile"> Profile</a>
+                        </li>
+                        <li><a href="/account/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right pull-right">
-                <c:if test="${role.equalsIgnoreCase('ADMIN')}">
-                    <li class=""><a href="/admin/userlist"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Admin</a></li>
-                </c:if>
-                <c:if test="${logged == true}">
-                    <li class=""><a href="/account/profile"><i class="fa fa-wrench"></i></span> My Page</a></li>
-                    <li class=""><a href="/account/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
-                </c:if>
-            </ul>
-        </div>
+        </nav>
     </div>
+
+    <!-- jQuery -->
+    <script src="/resources/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/resources/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+
 </div>
+<!-- /top navigation -->
