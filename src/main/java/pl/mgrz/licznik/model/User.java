@@ -1,7 +1,6 @@
 package pl.mgrz.licznik.model;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -15,12 +14,10 @@ public class User {
     @GeneratedValue
     private Integer id;
 
-    @NotEmpty
     @Column(unique = true)
     @Size(min=2, max=30)
     private String login;
 
-    @NotEmpty
     @Column(length = 255)
     private String password;
 
@@ -31,7 +28,6 @@ public class User {
     )
     private Role role;
 
-    @NotEmpty
     @Email
     @Column(unique = true)
     private String email;

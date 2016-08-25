@@ -11,4 +11,5 @@ public interface RefillService {
     List<Refill> getRefillList();
     void addRefill(Refill refill, int id);
     void removeRefill(int id);
+    Refill getLastRefill(int id);
 }

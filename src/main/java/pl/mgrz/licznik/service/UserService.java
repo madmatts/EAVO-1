@@ -10,4 +10,6 @@ public interface UserService {
     List<User> getAllUsers();
     void removeUser(String login);
     void registerUser(User user);
+    boolean changePassword(String login, String oldpassword, String password);
+    void editUser(User user);
 }

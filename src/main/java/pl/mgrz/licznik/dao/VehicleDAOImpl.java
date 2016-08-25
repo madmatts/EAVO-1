@@ -38,29 +38,45 @@ public class VehicleDAOImpl implements VehicleDAO {
         return vehicleList;
     }
 
-    public List<Vehicle> getVehicleListByUser(int id) {
-        List<Vehicle> vehicleList;
+    public Vehicle getVehicleByUser(int userId) {
+        Vehicle vehicle = null;
         Query query = getCurrentSession().createQuery("SELECT v from User u INNER JOIN u.vehicles v WHERE u.id=:id");
-        query.setParameter("id", id);
-        vehicleList = query.list();
-
-        return vehicleList;
-    }
-
-    public Vehicle getVehicle(int id) {
-        Query query = getCurrentSession().createQuery("from Vehicle where id=:id");
-        query.setParameter("id", id);
-        Vehicle vehicle = (Vehicle) query.list().get(0);
+        query.setParameter("id", userId);
+        if (!query.list().isEmpty()) {
+            vehicle = (Vehicle) query.list().get(0);
+        }
 
         return vehicle;
     }
 
-    public void addVehicle(Vehicle vehicle, int id) {
-        User user = userService.getUser((String) session.getAttribute("username"));
+
+
+    public Vehicle getVehicle(int id) {
+        Vehicle vehicle = new Vehicle();
+
+        System.out.println("====" + id);
+        Query query = getCurrentSession().createQuery("from Vehicle where id=:id");
+        query.setParameter("id", id);
+
+        if (query.list() != null) {
+            vehicle = (Vehicle) query.list().get(0);
+        }
+
+        return vehicle;
+    }
+
+    public void addVehicle(Vehicle vehicle, User user) {
         vehicle.setUser(user);
         Set<Refill> refills = null;
         vehicle.setRefill(refills);
-        getCurrentSession().persist(vehicle);
+        getCurrentSession().save(vehicle);
+    }
+
+    public void editVehicle(Vehicle vehicle, User user) {
+        System.out.println("=====DAO======");
+        vehicle.setUser(user);
+        System.out.println(vehicle.toString());
+        getCurrentSession().update(vehicle);
     }
 
     public void removeVehicle(int id) {

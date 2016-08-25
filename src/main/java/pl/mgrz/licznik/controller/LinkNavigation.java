@@ -5,15 +5,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
-
 /**
  * Created by MadMattz on 02.02.2016.
  */
 @Controller
 public class LinkNavigation {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView homePage() {
         return new ModelAndView("home");
     }

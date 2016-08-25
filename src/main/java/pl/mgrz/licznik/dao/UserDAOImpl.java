@@ -4,6 +4,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import pl.mgrz.licznik.model.User;
@@ -57,6 +58,22 @@ public class UserDAOImpl implements UserDAO {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(roleService.getRole(3));
         openSession().persist(user);
+    }
+
+    public void editUser(User user) {
+
+    }
+
+    public boolean changePassword(String login, String oldpassword, String password){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User queryUser = getUser(login);
+
+        if(encoder.matches(oldpassword, queryUser.getPassword())){
+            queryUser.setPassword(encoder.encode(password));
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

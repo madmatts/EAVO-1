@@ -26,14 +26,17 @@ public class ConsumptionController {
     private RefillService refillService;
 
     @RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
-    public String registerConsumption(@PathVariable int id, Model model) {
+    public String registerConsumption(@PathVariable int id, Model model, @ModelAttribute("refillForm") Refill r) {
         model.addAttribute("id", id);
         return "registerConsumption";
     }
 
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)
     public String postConsumption(@ModelAttribute("refillForm") Refill r, @PathVariable int id) {
-        refillService.addRefill(r,id);
+        System.out.println("======== REFILL =========");
+        System.out.println(r.print());
+        refillService.addRefill(r,r.getId());
+
         return "redirect:/vehicle/vehicles";
     }
 

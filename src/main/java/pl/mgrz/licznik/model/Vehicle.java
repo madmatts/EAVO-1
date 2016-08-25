@@ -1,6 +1,9 @@
 package pl.mgrz.licznik.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -10,15 +13,21 @@ public class Vehicle {
     @GeneratedValue
     private int id;
 
-    private String type;
+    private String brand;
 
     private String model;
 
     private String engine;
 
-    private String year;
-
     private String vin;
+
+    private FuelType fuelType;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date productionDate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date firstRegistrationDate;
+
+    private String registrationNumber;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_vehicles",
@@ -42,12 +51,12 @@ public class Vehicle {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getModel() {
@@ -66,12 +75,36 @@ public class Vehicle {
         this.engine = engine;
     }
 
-    public String getYear() {
-        return year;
+    public Date getFirstRegistrationDate() {
+        return firstRegistrationDate;
     }
 
-    public void setYear(String year) {
-        this.year = year;
+    public void setFirstRegistrationDate(Date firstRegistrationDate) {
+        this.firstRegistrationDate = firstRegistrationDate;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public Date getProductionDate() {
+        return productionDate;
+    }
+
+    public void setProductionDate(Date productionDate) {
+        this.productionDate = productionDate;
     }
 
     public String getVin() {
@@ -96,5 +129,22 @@ public class Vehicle {
 
     public void setRefill(Set<Refill> refill) {
         this.refill = refill;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", engine='" + engine + '\'' +
+                ", vin='" + vin + '\'' +
+                ", fuelType=" + fuelType +
+                ", productionDate=" + productionDate +
+                ", firstRegistrationDate=" + firstRegistrationDate +
+                ", registrationNumber='" + registrationNumber + '\'' +
+//                ", user=" + user +
+//                ", refill=" + refill +
+                '}';
     }
 }

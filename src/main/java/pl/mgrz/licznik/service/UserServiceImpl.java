@@ -31,4 +31,12 @@ public class UserServiceImpl implements UserService {
         userDAO.registerUser(user);
     }
 
+    public boolean changePassword(String login, String oldpassword, String password) {
+        return userDAO.changePassword(login, password, oldpassword);
+    }
+
+    public void editUser(User user) {
+        userDAO.editUser(user);
+    }
+
 }

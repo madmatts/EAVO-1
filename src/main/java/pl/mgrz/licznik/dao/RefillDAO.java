@@ -7,4 +7,5 @@ public interface RefillDAO {
     void addRefill(Refill refill, int id);
     void removeRefill(int id);
     Refill getRefillById(int id);
+    Refill getLastRefill(int id);
 }

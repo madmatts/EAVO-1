@@ -10,6 +10,7 @@ import pl.mgrz.licznik.model.Vehicle;
 import pl.mgrz.licznik.service.VehicleService;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @Repository
 public class RefillDAOImpl implements RefillDAO {
@@ -31,6 +32,7 @@ public class RefillDAOImpl implements RefillDAO {
     public void addRefill(Refill refill, int id) {
         Vehicle v = vehicleService.getVehicle(id);
         refill.setVehicle(v);
+        refill.setDate(new Date());
         getCurrentSession().persist(refill);
     }
 
@@ -47,6 +49,18 @@ public class RefillDAOImpl implements RefillDAO {
         query.setParameter("id", id);
         Refill refill = (Refill) query.list().get(0);
 
-        return getRefillById(id);
+        return refill;
+    }
+
+    public Refill getLastRefill(int id) {
+        Query query = getCurrentSession().createQuery("from Refill where id=:id");
+        query.setParameter("id", id);
+        Refill refill = new Refill();
+        if(!query.list().isEmpty()) {
+            refill = (Refill) query.list().get(query.list().size() - 1);
+        } else{
+            refill.setPricePerLitre(0);
+        }
+        return refill;
     }
 }

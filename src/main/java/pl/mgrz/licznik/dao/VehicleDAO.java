@@ -1,5 +1,6 @@
 package pl.mgrz.licznik.dao;
 
+import pl.mgrz.licznik.model.User;
 import pl.mgrz.licznik.model.Vehicle;
 
 import java.util.List;
@@ -7,9 +8,10 @@ import java.util.List;
 public interface VehicleDAO {
 
     List<Vehicle> getVehiclesList();
-    List<Vehicle> getVehicleListByUser(int id);
+    Vehicle getVehicleByUser(int userid);
     Vehicle getVehicle(int id);
-    void addVehicle(Vehicle vehicle, int id);
+    void addVehicle(Vehicle vehicle, User user);
     void removeVehicle(int id);
+    void editVehicle(Vehicle vehicle, User user);
 
 }

@@ -1,7 +1,5 @@
 package pl.mgrz.licznik.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,6 +7,11 @@ import java.util.Date;
 @Table(name = "refill")
 public class Refill {
 
+    public Refill(){
+        pricePerLitre = 0;
+        mileage = 0;
+        
+    }
     @Id
     @GeneratedValue
     private int id;
@@ -23,7 +26,7 @@ public class Refill {
 
     private String fuelStation;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    //    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -105,5 +108,9 @@ public class Refill {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String print() {
+        return "REFILL: [" + getId() + ", " + getMileage() + ", " + getVolume() + ", " + getType() + ", " + getDate() + ", " + getFuelStation() + ", " + getPrice() + ", " + getPricePerLitre() + ", " +            getVehicle() + "]";
     }
 }

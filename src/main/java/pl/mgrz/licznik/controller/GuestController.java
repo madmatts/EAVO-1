@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.mgrz.licznik.model.AlarmType;
 import pl.mgrz.licznik.model.User;
 import pl.mgrz.licznik.service.UserService;
 
@@ -23,9 +24,9 @@ public class GuestController {
     @Autowired
     private HttpSession session;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String loginForm(Model model) {
-        if("true".equals(session.getAttribute("logged"))){
+        if ("true".equals(session.getAttribute("logged"))) {
             return "redirect:/account/mypage";
         }
         return "login";
@@ -33,22 +34,24 @@ public class GuestController {
 
     @RequestMapping(value = "/login/logout", method = RequestMethod.GET)
     public String loginFormAfterLogout(Model model) {
-
         String message = "You have been logged out correctly!";
         model.addAttribute("message", message);
+        model.addAttribute("error", true);
         return "login";
     }
 
 
     @RequestMapping(value = "/error", method = RequestMethod.GET)
     public String invalidLogin(Model model) {
-        model.addAttribute("error", true);
+        model.addAttribute("afterpost", true);
+        model.addAttribute("message", "Your credentials were incorrect.");
+        model.addAttribute("alarmtype", AlarmType.DANGER);
         return "login";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerForm(Model model, Map<String, Object> map) {
-        if("true".equals(session.getAttribute("logged"))){
+    public String registerForm(Map<String, Object> map) {
+        if ("true".equals(session.getAttribute("logged"))) {
             return "redirect:/account/mypage";
         }
         User userForm = new User();
@@ -59,7 +62,7 @@ public class GuestController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerAction(@ModelAttribute("userForm") User u, Model model) {
 
-        if(service.getUser(u.getLogin()) == null){
+        if (service.getUser(u.getLogin()) == null) {
             service.registerUser(u);
             return "login";
         }
@@ -69,6 +72,6 @@ public class GuestController {
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String registerAction() {
-        return "error";
+        return "page_403";
     }
 }

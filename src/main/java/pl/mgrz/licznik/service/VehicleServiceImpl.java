@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mgrz.licznik.dao.VehicleDAO;
+import pl.mgrz.licznik.model.User;
 import pl.mgrz.licznik.model.Vehicle;
 
 import java.util.List;
@@ -23,16 +24,19 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleDAO.getVehiclesList();
     }
 
-    public List<Vehicle> getVehiclesListByUser(int id) {
-        return vehicleDAO.getVehicleListByUser(id);
+    public Vehicle getVehiclesByUser(int id) {
+        return vehicleDAO.getVehicleByUser(id);
     }
 
-    public void addVehicle(Vehicle vehicle, int id) {
-        vehicleDAO.addVehicle(vehicle, id);
+    public void addVehicle(Vehicle vehicle, User user) {
+        vehicleDAO.addVehicle(vehicle, user);
     }
 
     public void removeVehicle(int id) {
         vehicleDAO.removeVehicle(id);
     }
 
+    public void editVehicle(Vehicle vehicle, User user) {
+        vehicleDAO.editVehicle(vehicle, user);
+    }
 }

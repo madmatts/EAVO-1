@@ -3,7 +3,6 @@ package pl.mgrz.licznik.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import pl.mgrz.licznik.model.AlarmType;
 import pl.mgrz.licznik.service.UserService;
 
 import javax.imageio.ImageIO;
@@ -33,7 +33,7 @@ public class AccountController {
 
     @RequestMapping(value = "/success", method = RequestMethod.GET)
     public String loggedIn(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (user != null) {
             session.setAttribute("username", user.getUsername());
             session.setAttribute("user", userService.getUser(user.getUsername()));
@@ -48,7 +48,7 @@ public class AccountController {
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        session.setAttribute("logged", "");
+        session.setAttribute("logged", false);
         session.setAttribute("username", "");
         session.setAttribute("user", null);
         if (auth != null) {
@@ -75,6 +75,7 @@ public class AccountController {
         return "myprofile";
     }
 
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String handleFormUpload(
             @RequestParam("file") MultipartFile file) throws IOException {
@@ -89,7 +90,6 @@ public class AccountController {
 
     @RequestMapping(value = "/remove", method = RequestMethod.GET)
     public String getRemoveAccountForm(HttpSession session, Model model) {
-        userService.removeUser((String) session.getAttribute("username"));
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("user", session.getAttribute("user"));
         return "removeAccount";
@@ -105,6 +105,34 @@ public class AccountController {
     public String editAccount(HttpSession session, Model model) {
         model.addAttribute("username", session.getAttribute("username"));
         model.addAttribute("user", session.getAttribute("user"));
+        return "editAccount";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editAccountPost(HttpSession session, Model model, @RequestParam("user") String email) {
+        pl.mgrz.licznik.model.User user = (pl.mgrz.licznik.model.User) session.getAttribute("user");
+        if (!email.isEmpty()) {
+            user.setEmail(email);
+        }
+        userService.editUser(user);
+        model.addAttribute("alarmtype", AlarmType.SUCCESS);
+        model.addAttribute("message", "Account edited sucessfuly");
+        model.addAttribute("afterpost", true);
+        return "editAccount";
+    }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    public String changePassword(Model model, @RequestParam(value = "oldPassword") String oldPassword, @RequestParam("password") String password) {
+
+        if (userService.changePassword((String) session.getAttribute("username"), password, oldPassword)) {
+            model.addAttribute("alarmtype", AlarmType.SUCCESS);
+            model.addAttribute("message", "Password changed sucessfuly");
+            model.addAttribute("afterpost", true);
+        } else {
+            model.addAttribute("alarmtype", AlarmType.DANGER);
+            model.addAttribute("message", "Password password does not match. Please try again.");
+            model.addAttribute("afterpost", true);
+        }
         return "editAccount";
     }
 

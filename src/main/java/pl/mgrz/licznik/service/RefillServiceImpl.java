@@ -31,4 +31,8 @@ public class RefillServiceImpl implements RefillService {
     public void removeRefill(int id) {
         refillDAO.removeRefill(id);
     }
+
+    public Refill getLastRefill(int id) {
+        return refillDAO.getLastRefill(id);
+    }
 }
