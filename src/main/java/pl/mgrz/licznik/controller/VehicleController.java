@@ -42,8 +42,7 @@ public class VehicleController {
         if (vehicle == null) {
             return "redirect:/vehicle/add";
         }
-
-        return "vehiclesList";
+        return "vehicleDashboard";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -91,9 +90,9 @@ public class VehicleController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editVehiclePost(Model model, @ModelAttribute("vehicle") Vehicle v,
-                                 @RequestParam("fueltype") String fueltype,
-                                 @RequestParam("productionDate") String productionDate,
-                                 @RequestParam("firstRegistrationDate") String firstRegistrationDate) {
+                                  @RequestParam("fueltype") String fueltype,
+                                  @RequestParam("productionDate") String productionDate,
+                                  @RequestParam("firstRegistrationDate") String firstRegistrationDate) {
         List<FuelType> fuelTypeList = Arrays.asList(FuelType.values());
         v.setFuelType(FuelType.valueOf(fueltype));
 
@@ -106,7 +105,7 @@ public class VehicleController {
         System.out.println(v.toString());
 
         User user = (User) session.getAttribute("user");
-        vehicleService.editVehicle(v,user);
+        vehicleService.editVehicle(v, user);
 
         return "editVehicle";
     }
