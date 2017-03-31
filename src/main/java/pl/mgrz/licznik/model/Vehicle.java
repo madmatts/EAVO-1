@@ -22,9 +22,16 @@ public class Vehicle {
     private String vin;
 
     private FuelType fuelType;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+
+    //TODO
+    /* Date is to fix */
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
     private Date productionDate;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Temporal(TemporalType.DATE)
     private Date firstRegistrationDate;
 
     private String registrationNumber;
