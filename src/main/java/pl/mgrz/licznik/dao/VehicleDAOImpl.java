@@ -30,7 +30,7 @@ public class VehicleDAOImpl implements VehicleDAO {
         return sessionFactory.getCurrentSession();
     }
 
-    public List<Vehicle> getVehiclesList() {
+    public List<Vehicle> getVehiclesList(int userId) {
         List<Vehicle> vehicleList;
         Query query = getCurrentSession().createQuery("from Vehicle");
         vehicleList = query.list();
