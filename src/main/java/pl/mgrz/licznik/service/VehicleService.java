@@ -9,8 +9,8 @@ import java.util.List;
 public interface VehicleService {
 
     Vehicle getVehicle(int id);
-    List<Vehicle> getVehiclesList();
-    List<Vehicle> getVehiclesByUser(int id);
+    List<Vehicle> getVehiclesList(int userId);
+    Vehicle getVehiclesByUser(int id);
     void addVehicle(Vehicle vehicle, User user);
     void removeVehicle(int id);
     void editVehicle(Vehicle vehicle, User user);

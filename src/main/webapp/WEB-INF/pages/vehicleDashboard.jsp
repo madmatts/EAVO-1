@@ -12,7 +12,7 @@
                         </a>
                     </div>
                 </div>
-                <c:forEach items="${vehiclesList}" var="v">
+                <c:forEach items="${vehicleList}" var="v">
                     <div class="panel row-default">
                         <div class="panel-body">
                             <div class="col-lg-3">
@@ -24,10 +24,6 @@
                                 </div>
                                 <div class="row">
                                     <ul class="list-group">
-                                        <div class="list-inline">
-                                            <h4 class="list-group-item-heading">Brand</h4>
-                                            <li class="text-primary"><c:out value="${v.brand}"></c:out></li>
-                                        </div>
                                         <div class="list-inline">
                                             <h4 class="list-group-item-heading">Model</h4>
                                             <li class="text-primary"><c:out value="${v.model}"></c:out></li>
@@ -60,6 +56,8 @@
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </c:forEach>

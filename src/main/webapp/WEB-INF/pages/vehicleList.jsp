@@ -12,7 +12,7 @@
                         </a>
                     </div>
                 </div>
-                <c:forEach items="${vehiclesList}" var="v">
+                <c:forEach items="${vehicleList}" var="v">
                     <div class="panel row-default">
                         <div class="panel-body">
                             <div class="col-lg-3">
@@ -25,8 +25,8 @@
                                 <div class="row">
                                     <ul class="list-group">
                                         <div class="list-inline">
-                                            <h4 class="list-group-item-heading">Type</h4>
-                                            <li class="text-primary"><c:out value="${v.type}"></c:out></li>
+                                            <h4 class="list-group-item-heading">Model</h4>
+                                            <li class="text-primary"><c:out value="${v.model}"></c:out></li>
                                         </div>
                                         <div class="list-inline">
                                             <h4 class="list-group-item-heading">Engine</h4>
@@ -34,7 +34,7 @@
                                         </div>
                                         <div class="list-inline">
                                             <h4 class="list-group-item-heading">Production year</h4>
-                                            <li class="text-primary"><c:out value="${v.year}"></c:out></li>
+                                            <li class="text-primary"><c:out value="${v.productionDate}"></c:out></li>
                                         </div>
                                         <div class="list-inline">
                                             <h4 class="list-group-item-heading">VIN number</h4>
@@ -56,8 +56,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </c:forEach>

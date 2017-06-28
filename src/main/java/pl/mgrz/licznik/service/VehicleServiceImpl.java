@@ -20,8 +20,8 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleDAO.getVehicle(id);
     }
 
-    public List<Vehicle> getVehiclesList() {
-        return vehicleDAO.getVehiclesList();
+    public List<Vehicle> getVehiclesList(int userId) {
+        return vehicleDAO.getVehiclesList(userId);
     }
 
     public List<Vehicle> getVehiclesByUser(int id) {

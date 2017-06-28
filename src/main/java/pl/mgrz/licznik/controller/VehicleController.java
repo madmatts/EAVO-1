@@ -44,6 +44,7 @@ public class VehicleController extends AbstractController {
         if (vehicleList.isEmpty()) {
             return "redirect:/vehicle/add";
         }
+        model.addAttribute("vehicleList", vehicleService.getVehiclesList(user.getId()));
         return "vehicleDashboard";
     }
 
@@ -88,7 +89,11 @@ public class VehicleController extends AbstractController {
 
         System.out.println("=====GET======");
         System.out.println(vehicle.toString());
-
+        List<Vehicle> cars = vehicleService.getVehiclesList(user.getId());
+        model.addAttribute("vehicleList");
+        if(cars.size() > 1){
+            return "vehicleList";
+        }
         return "editVehicle";
     }
 
