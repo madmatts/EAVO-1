@@ -24,8 +24,8 @@ public class VehicleServiceImpl implements VehicleService {
         return vehicleDAO.getVehiclesList();
     }
 
-    public Vehicle getVehiclesByUser(int id) {
-        return vehicleDAO.getVehicleByUser(id);
+    public List<Vehicle> getVehiclesByUser(int id) {
+        return vehicleDAO.getVehiclesByUser(id);
     }
 
     public void addVehicle(Vehicle vehicle, User user) {

@@ -13,7 +13,7 @@
             <div class="page-title">
                 <div class="title_left">
                     <h3>
-                        Add vehicle
+                        Edit vehicle
                     </h3>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Vehicle
-                                <small>Add vehicle to your account</small>
+                                <small>${vehicle.brand} ${vehicle.model}</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -47,9 +47,13 @@
                                     <strong>${message}</strong>
                                 </div>
                             </c:if>
-                            <form class="form-horizontal form-label-left" action="/vehicle/add" method="post"
+                            <form class="form-horizontal form-label-left" action="/vehicle/edit" method="post"
                                   novalidate="" modelAttribute="vehicle">
                                 <span class="section">Vehicle </span>
+
+                                <input id="id" class="form-control col-md-7 col-xs-12" name="id"
+                                       placeholder="Opel" required="required" type="hidden" path="id"
+                                       value="${vehicle.getId()}"/>
 
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Brand <span
@@ -97,8 +101,8 @@
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-3">Produtcion date</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control" data-inputmask="'mask': '99-99-9999'"
-                                               placeholder="dd/MM/yyyy" name="productionDate"
+                                        <input type="text" class="form-control" data-inputmask="'mask': '9999/99/99'"
+                                               placeholder="yyyy/MM/dd" name="productionDate"
                                                value="${vehicle.getProductionDate()}"/>
                                         <span class="fa fa-calendar-o form-control-feedback right"
                                               aria-hidden="true"></span>
@@ -107,8 +111,8 @@
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-3">Registration Date</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control" data-inputmask="'mask': '99-99-9999'"
-                                               placeholder="dd/MM/yyyy" name="firstRegistrationDate"
+                                        <input type="text" class="form-control" data-inputmask="'mask': '9999/99/99'"
+                                               placeholder="yyyy/MM/dd" name="firstRegistrationDate"
                                                value="${vehicle.getFirstRegistrationDate()}"/>
                                         <span class="fa fa-calendar-o form-control-feedback right"
                                               aria-hidden="true"></span>
@@ -134,7 +138,8 @@
                                             <c:forEach var="type" items="${fuelTypeList}">
                                                 <c:choose>
                                                     <c:when test="${type.equals(vehicle.getFuelType())}">
-                                                        <option value="${type.toString()}" selected="selected">${type.toString()}</option>
+                                                        <option value="${type.toString()}"
+                                                                selected="selected">${type.toString()}</option>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <option value="${type.toString()}">${type.toString()}</option>

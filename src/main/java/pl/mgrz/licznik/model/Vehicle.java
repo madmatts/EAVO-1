@@ -26,11 +26,11 @@ public class Vehicle {
     //TODO
     /* Date is to fix */
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Temporal(TemporalType.DATE)
     private Date productionDate;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Temporal(TemporalType.DATE)
     private Date firstRegistrationDate;
 
@@ -48,7 +48,7 @@ public class Vehicle {
             joinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "refill_id", referencedColumnName = "id")}
     )
-    private Set<Refill> refill;
+    private Set<Refuel> refuel;
 
     public int getId() {
         return id;
@@ -130,12 +130,12 @@ public class Vehicle {
         this.user = user;
     }
 
-    public Set<Refill> getRefill() {
-        return refill;
+    public Set<Refuel> getRefuel() {
+        return refuel;
     }
 
-    public void setRefill(Set<Refill> refill) {
-        this.refill = refill;
+    public void setRefuel(Set<Refuel> refuel) {
+        this.refuel = refuel;
     }
 
     @Override
@@ -151,7 +151,7 @@ public class Vehicle {
                 ", firstRegistrationDate=" + firstRegistrationDate +
                 ", registrationNumber='" + registrationNumber + '\'' +
 //                ", user=" + user +
-//                ", refill=" + refill +
+//                ", refuel=" + refuel +
                 '}';
     }
 }

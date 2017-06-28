@@ -4,10 +4,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "refill")
-public class Refill {
+@Table(name = "Refuel")
+public class Refuel {
 
-    public Refill(){
+    public Refuel(){
         pricePerLitre = 0;
         mileage = 0;
         
@@ -30,8 +30,8 @@ public class Refill {
     private Date date;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "vehicle_refill",
-            joinColumns = {@JoinColumn(name = "refill_id", referencedColumnName = "id")},
+    @JoinTable(name = "vehicle_Refuel",
+            joinColumns = {@JoinColumn(name = "Refuel_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")}
     )
     private Vehicle vehicle;
@@ -111,6 +111,6 @@ public class Refill {
     }
 
     public String print() {
-        return "REFILL: [" + getId() + ", " + getMileage() + ", " + getVolume() + ", " + getType() + ", " + getDate() + ", " + getFuelStation() + ", " + getPrice() + ", " + getPricePerLitre() + ", " +            getVehicle() + "]";
+        return "Refuel: [" + getId() + ", " + getMileage() + ", " + getVolume() + ", " + getType() + ", " + getDate() + ", " + getFuelStation() + ", " + getPrice() + ", " + getPricePerLitre() + ", " +            getVehicle() + "]";
     }
 }

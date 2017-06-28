@@ -12,10 +12,10 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         <img src="/resources/images/favicon.ico" alt="">${username}
-                        <span class=" fa fa-angle-down"></span>
+                        <span class="fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="/account/myprofile"> Profile</a>
+                        <li><a href="/account/profile"> Profile</a>
                         </li>
                         <li><a href="/account/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                         </li>

@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.mgrz.licznik.model.Refill;
+import pl.mgrz.licznik.model.Refuel;
 import pl.mgrz.licznik.model.User;
 import pl.mgrz.licznik.model.Vehicle;
 import pl.mgrz.licznik.service.UserService;
@@ -38,15 +38,11 @@ public class VehicleDAOImpl implements VehicleDAO {
         return vehicleList;
     }
 
-    public Vehicle getVehicleByUser(int userId) {
-        Vehicle vehicle = null;
+    public List<Vehicle> getVehiclesByUser(int userId) {
         Query query = getCurrentSession().createQuery("SELECT v from User u INNER JOIN u.vehicles v WHERE u.id=:id");
         query.setParameter("id", userId);
-        if (!query.list().isEmpty()) {
-            vehicle = (Vehicle) query.list().get(0);
-        }
 
-        return vehicle;
+        return query.list();
     }
 
 
@@ -67,8 +63,8 @@ public class VehicleDAOImpl implements VehicleDAO {
 
     public void addVehicle(Vehicle vehicle, User user) {
         vehicle.setUser(user);
-        Set<Refill> refills = null;
-        vehicle.setRefill(refills);
+        Set<Refuel> refuels = null;
+        vehicle.setRefuel(refuels);
         getCurrentSession().save(vehicle);
     }
 

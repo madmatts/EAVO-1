@@ -9,26 +9,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/resources/DashGum/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/resources/DashGum/style.css">
-    <link rel="stylesheet" type="text/css" href="/resources/DashGum/style-responsive.css">
-    <link rel="stylesheet" type="text/css" href="/resources/DashGum/table-responsive.css">
-    <link rel="shortcut icon" type="image/png" href="/resources/images/favicon.ico"/>
+    <link href="/resources/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="/resources/bower_components/gentelella/images/favicon.ico"/>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" src="/resources/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/WEB-INF/resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/resources/bower_components/gentelella/js/bootstrap.js"></script>
 </head>
-<body>
+<body class="footer_fixed">
 <tiles:insertAttribute name="header"/>
 <div class="container">
     <tiles:insertAttribute name="body"/>
-</div>
-<div class="container">
     <tiles:insertAttribute name="footer"/>
 </div>
 
+<script src="/resources/bower_components/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/resources/bower_components/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="/resources/bower_components/gentelella/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/resources/bower_components/gentelella/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/resources/bower_components/gentelella/bower_components//vendors/moment/min/moment.min.js"></script>
+<script src="/resources/bower_components/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Ion.RangeSlider -->
+<script src="/resources/bower_components/gentelella/vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+<!-- Bootstrap Colorpicker -->
+<script src="/resources/bower_components/gentelella/vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<!-- jquery.inputmask -->
+<script src="/resources/bower_components/gentelella/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+<!-- jQuery Knob -->
+<script src="/resources/bower_components/gentelella/vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+<!-- Cropper -->
+<script src="/resources/bower_components/gentelella/vendors/cropper/dist/cropper.min.js"></script>
 
+<!-- Custom Theme Scripts -->
+<script src="/resources/bower_components/gentelella/js/custom.js"></script>
 </body>
 </html>

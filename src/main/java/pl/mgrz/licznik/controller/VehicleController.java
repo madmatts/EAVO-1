@@ -6,10 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import pl.mgrz.licznik.model.AlarmType;
-import pl.mgrz.licznik.model.FuelType;
-import pl.mgrz.licznik.model.User;
-import pl.mgrz.licznik.model.Vehicle;
+import pl.mgrz.licznik.model.*;
+import pl.mgrz.licznik.service.RefuelService;
 import pl.mgrz.licznik.service.VehicleService;
 
 import javax.servlet.http.HttpSession;
@@ -21,12 +19,16 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/vehicle")
 
-public class VehicleController {
+public class VehicleController extends AbstractController {
 
     @Autowired
     private HttpSession session;
+
     @Autowired
     private VehicleService vehicleService;
+
+    @Autowired
+    private RefuelService refuelService;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String viewVehicle(@PathVariable int id, Model model) {
@@ -35,11 +37,11 @@ public class VehicleController {
         return "vehicleViewer";
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String viewVehiclesList(Model model) {
-        User user = (User) session.getAttribute("user");
-        Vehicle vehicle = vehicleService.getVehiclesByUser(user.getId());
-        if (vehicle == null) {
+    @RequestMapping(value = "/dashboard/{id}", method = RequestMethod.GET)
+    public String viewVehiclesList(Model model, @PathVariable("id") int vehicleId) {
+        User user = getLoggedUser();
+        List<Vehicle> vehicleList = vehicleService.getVehiclesByUser(user.getId());
+        if (vehicleList.isEmpty()) {
             return "redirect:/vehicle/add";
         }
         return "vehicleDashboard";
@@ -66,17 +68,19 @@ public class VehicleController {
         model.addAttribute("message", "Vehicle successfully added.");
         model.addAttribute("afterpost", true);
 
-        User user = (User) session.getAttribute("user");
+        User user = getLoggedUser();
         vehicleService.addVehicle(v, user);
 
-        return "addVehicle";
+        ((List<Vehicle>) session.getAttribute("vehicleList")).add(v);
+        return "redirect:/dashboard/" + v.getId();
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String editVehicle(Model model) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editVehicle(Model model, @PathVariable("id") int vehicleId) {
         List<FuelType> fuelTypeList = Arrays.asList(FuelType.values());
-        User user = (User) session.getAttribute("user");
-        Vehicle vehicle = vehicleService.getVehiclesByUser(user.getId());
+        User user = getLoggedUser();
+        Vehicle vehicle = vehicleService.getVehicle(vehicleId);
+//        List<Vehicle> vehicleList = vehicleService.getVehiclesByUser(user.getId());
 
         model.addAttribute("vehicle", vehicle);
         model.addAttribute("afterpost", false);
@@ -104,7 +108,7 @@ public class VehicleController {
         System.out.println("=====POST======");
         System.out.println(v.toString());
 
-        User user = (User) session.getAttribute("user");
+        User user = getLoggedUser();
         vehicleService.editVehicle(v, user);
 
         return "editVehicle";
@@ -116,6 +120,21 @@ public class VehicleController {
         vehicleService.removeVehicle(id);
 
         return "redirect:/vehicles";
+    }
+
+
+    @RequestMapping(value = "/refuel/{id}", method = RequestMethod.GET)
+    public String refuelView(Model model, @PathVariable("id") int vehicleId) {
+        List<FuelType> fuelTypeList = Arrays.asList(FuelType.values());
+        Vehicle vehicle = vehicleService.getVehicle(vehicleId);
+        List<Refuel> refuelList = refuelService.getRefuelList(vehicle);
+        model.addAttribute("vehicle", vehicle);
+        model.addAttribute("afterpost", false);
+        model.addAttribute("fuelTypeList", fuelTypeList);
+        System.out.println(refuelList);
+        model.addAttribute("refuelList", refuelList);
+
+        return "refuel";
     }
 
     @InitBinder

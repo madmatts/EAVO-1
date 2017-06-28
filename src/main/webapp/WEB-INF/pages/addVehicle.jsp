@@ -30,7 +30,8 @@
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                 </li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>
@@ -40,16 +41,19 @@
                         <div class="x_content">
                             <c:if test="${afterpost}">
                                 <div class="alert alert-${alarmtype} alert-dismissible fade in" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                            aria-hidden="true">x</span>
                                     </button>
                                     <strong>${message}</strong>
                                 </div>
                             </c:if>
-                            <form class="form-horizontal form-label-left" action="/vehicle/add" method="post" novalidate="" modelAttribute="vehicle">
+                            <form class="form-horizontal form-label-left" action="/vehicle/add" method="post"
+                                  novalidate="" modelAttribute="vehicle">
                                 <span class="section">Vehicle </span>
 
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Brand <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="brand">Brand <span
+                                            class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input id="brand" class="form-control col-md-7 col-xs-12" name="brand"
@@ -57,53 +61,66 @@
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class=" control-label col-md-3 col-sm-3 col-xs-12" for="model">Model <span class="required">*</span>
+                                    <label class=" control-label col-md-3 col-sm-3 col-xs-12" for="model">Model <span
+                                            class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="model" name="model"
-                                               placeholder="Vectra" required="required" class="form-control col-md-7 col-xs-12" path="model"/>
+                                               placeholder="Vectra" required="required"
+                                               class="form-control col-md-7 col-xs-12" path="model"/>
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="engine">Engine <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="engine">Engine <span
+                                            class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="engine" name="engine"
-                                               placeholder="1.8l" required="required" class="form-control col-md-7 col-xs-12" path="engine"/>
+                                               placeholder="1.8l" required="required"
+                                               class="form-control col-md-7 col-xs-12" path="engine"/>
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="engine">Vin number <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="engine">Vin number
+                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="vin"
-                                               placeholder="WOL12345678901112" required="required" class="form-control col-md-7 col-xs-12" name="vin"/>
+                                               placeholder="WOL12345678901112" required="required"
+                                               class="form-control col-md-7 col-xs-12" name="vin"/>
                                     </div>
                                 </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-3">Produtcion date</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" placeholder="dd-MM-yyyy" name="productionDate"/>
-                                        <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
+                                        <input type="text" class="form-control" data-inputmask="'mask': '9999/99/99'"
+                                               placeholder="yyyy/MM/dd" name="productionDate"/>
+                                        <span class="fa fa-calendar-o form-control-feedback right"
+                                              aria-hidden="true"></span>
                                     </div>
                                 </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-3">Registration Date</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" class="form-control" data-inputmask="'mask': '99-99-9999'" placeholder="dd-MM-yyyy" name="firstRegistrationDate"/>
-                                        <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
+                                        <input type="text" class="form-control" data-inputmask="'mask': '9999/99/99'"
+                                               placeholder="yyyy/MM/dd" name="firstRegistrationDate"/>
+                                        <span class="fa fa-calendar-o form-control-feedback right"
+                                              aria-hidden="true"></span>
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="registrationNumber">Registration number <span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="registrationNumber">Registration
+                                        number <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="registrationNumber" name="registrationNumber"
-                                               placeholder="EP12345" required="required" class="form-control col-md-7 col-xs-12" path="registrationNumber"/>
+                                               placeholder="EP12345" required="required"
+                                               class="form-control col-md-7 col-xs-12" path="registrationNumber"/>
                                     </div>
                                 </div>
                                 <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fueltype">Fuel type<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fueltype">Fuel
+                                        type<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select id="fueltype" class="form-control" required name="fueltype">
