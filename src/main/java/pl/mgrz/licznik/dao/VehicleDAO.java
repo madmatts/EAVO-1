@@ -8,7 +8,7 @@ import java.util.List;
 public interface VehicleDAO {
 
     List<Vehicle> getVehiclesList(int userId);
-    Vehicle getVehicleByUser(int userid);
+    List<Vehicle> getVehiclesByUser(int userid);
     Vehicle getVehicle(int id);
     void addVehicle(Vehicle vehicle, User user);
     void removeVehicle(int id);

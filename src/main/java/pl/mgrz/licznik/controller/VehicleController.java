@@ -40,7 +40,7 @@ public class VehicleController extends AbstractController {
     @RequestMapping(value = "/dashboard/{id}", method = RequestMethod.GET)
     public String viewVehiclesList(Model model, @PathVariable("id") int vehicleId) {
         User user = getLoggedUser();
-        List<Vehicle> vehicleList = vehicleService.getVehiclesByUser(user.getId());
+        List<Vehicle> vehicleList = (List<Vehicle>) vehicleService.getVehiclesByUser(user.getId());
         if (vehicleList.isEmpty()) {
             return "redirect:/vehicle/add";
         }

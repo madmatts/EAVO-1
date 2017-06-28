@@ -806,7 +806,7 @@ a:focus {
     line-height: 32px
 }
 .site_title {
-    /*text-overflow: ellipsis;*/
+    text-overflow: ellipsis;
     overflow: hidden;
     font-weight: 400;
     font-size: 22px;
@@ -823,7 +823,6 @@ a:focus {
 .site_title:focus {
     text-decoration: none
 }
-
 .nav.navbar-nav>li>a {
     color: #515356 !important
 }
@@ -880,7 +879,7 @@ a:focus {
 }
 .panel_toolbox {
     float: right;
-    min-width: 20px
+    min-width: 70px
 }
 .panel_toolbox>li {
     float: left;
