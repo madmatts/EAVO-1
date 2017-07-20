@@ -1,42 +1,40 @@
 package pl.mgrz.licznik.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Refuel")
+@Table(name = "refuel")
 public class Refuel {
 
-    public Refuel(){
-        pricePerLitre = 0;
-        mileage = 0;
-        
-    }
     @Id
     @GeneratedValue
     private int id;
-
     private long mileage;
-
+    private long latestMileage;
+    @Column(precision = 2)
     private double volume;
-
+    @Column(precision = 2)
     private double price;
-
+    @Column(precision = 2)
+    private double consumption;
     private double pricePerLitre;
-
     private String fuelStation;
-
-    //    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "vehicle_Refuel",
-            joinColumns = {@JoinColumn(name = "Refuel_id", referencedColumnName = "id")},
+    @ManyToOne
+    @JoinTable(name = "vehicle_refuel",
+            joinColumns = {@JoinColumn(name = "refuel_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "vehicle_id", referencedColumnName = "id")}
     )
     private Vehicle vehicle;
+    private FuelType fuelType;
 
-    private String type;
+    public Refuel() {
+        consumption = 0;
+    }
 
     public Vehicle getVehicle() {
         return vehicle;
@@ -46,12 +44,12 @@ public class Refuel {
         this.vehicle = vehicle;
     }
 
-    public String getType() {
-        return type;
+    public FuelType getFuelType() {
+        return fuelType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
     }
 
     public int getId() {
@@ -86,14 +84,6 @@ public class Refuel {
         this.price = price;
     }
 
-    public double getPricePerLitre() {
-        return pricePerLitre;
-    }
-
-    public void setPricePerLitre(double pricePerLitre) {
-        this.pricePerLitre = pricePerLitre;
-    }
-
     public String getFuelStation() {
         return fuelStation;
     }
@@ -110,7 +100,44 @@ public class Refuel {
         this.date = date;
     }
 
-    public String print() {
-        return "Refuel: [" + getId() + ", " + getMileage() + ", " + getVolume() + ", " + getType() + ", " + getDate() + ", " + getFuelStation() + ", " + getPrice() + ", " + getPricePerLitre() + ", " +            getVehicle() + "]";
+
+    public double getPricePerLitre() {
+        return pricePerLitre;
+    }
+
+    public void setPricePerLitre(double pricePerLitre) {
+        this.pricePerLitre = pricePerLitre;
+    }
+
+
+    public long getLatestMileage() {
+        return latestMileage;
+    }
+
+    public void setLatestMileage(long latestMileage) {
+        this.latestMileage = latestMileage;
+    }
+
+    public double getConsumption() {
+        return consumption;
+    }
+
+    public void setConsumption(double consumption) {
+        this.consumption = consumption;
+    }
+
+    @Override
+    public String toString() {
+        return "Refuel{" +
+                "id=" + id +
+                ", mileage=" + mileage +
+                ", volume=" + volume +
+                ", price=" + price +
+                ", consumption=" + consumption +
+                ", fuelStation='" + fuelStation + '\'' +
+                ", date=" + date +
+                ", vehicle=" + vehicle +
+                ", fuelType=" + fuelType +
+                '}';
     }
 }

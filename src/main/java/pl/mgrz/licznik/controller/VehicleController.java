@@ -73,29 +73,29 @@ public class VehicleController extends AbstractController {
         vehicleService.addVehicle(v, user);
 
         ((List<Vehicle>) session.getAttribute("vehicleList")).add(v);
-        return "redirect:/dashboard/" + v.getId();
+        return "redirect:/vehicle/dashboard/" + v.getId();
     }
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String editVehicle(Model model, @PathVariable("id") int vehicleId) {
-        List<FuelType> fuelTypeList = Arrays.asList(FuelType.values());
-        User user = getLoggedUser();
-        Vehicle vehicle = vehicleService.getVehicle(vehicleId);
-//        List<Vehicle> vehicleList = vehicleService.getVehiclesByUser(user.getId());
-
-        model.addAttribute("vehicle", vehicle);
-        model.addAttribute("afterpost", false);
-        model.addAttribute("fuelTypeList", fuelTypeList);
-
-        System.out.println("=====GET======");
-        System.out.println(vehicle.toString());
-        List<Vehicle> cars = vehicleService.getVehiclesList(user.getId());
-        model.addAttribute("vehicleList");
-        if(cars.size() > 1){
-            return "vehicleList";
-        }
-        return "editVehicle";
-    }
+//    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+//    public String editVehicle(Model model, @PathVariable("id") int vehicleId) {
+//        List<FuelType> fuelTypeList = Arrays.asList(FuelType.values());
+//        User user = getLoggedUser();
+//        Vehicle vehicle = vehicleService.getVehicle(vehicleId);
+////        List<Vehicle> vehicleList = vehicleService.getVehiclesByUser(user.getId());
+//
+//        model.addAttribute("vehicle", vehicle);
+//        model.addAttribute("afterpost", false);
+//        model.addAttribute("fuelTypeList", fuelTypeList);
+//
+//        System.out.println("=====GET======");
+//        System.out.println(vehicle.toString());
+//        List<Vehicle> cars = vehicleService.getVehiclesList(user.getId());
+//        model.addAttribute("vehicleList");
+//        if(cars.size() > 1){
+//            return "vehicleList";
+//        }
+//        return "editVehicle";
+//    }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editVehiclePost(Model model, @ModelAttribute("vehicle") Vehicle v,
@@ -128,19 +128,19 @@ public class VehicleController extends AbstractController {
     }
 
 
-    @RequestMapping(value = "/refuel/{id}", method = RequestMethod.GET)
-    public String refuelView(Model model, @PathVariable("id") int vehicleId) {
-        List<FuelType> fuelTypeList = Arrays.asList(FuelType.values());
-        Vehicle vehicle = vehicleService.getVehicle(vehicleId);
-        List<Refuel> refuelList = refuelService.getRefuelList(vehicle);
-        model.addAttribute("vehicle", vehicle);
-        model.addAttribute("afterpost", false);
-        model.addAttribute("fuelTypeList", fuelTypeList);
-        System.out.println(refuelList);
-        model.addAttribute("refuelList", refuelList);
-
-        return "refuel";
-    }
+//    @RequestMapping(value = "/refuel/{id}", method = RequestMethod.GET)
+//    public String refuelView(Model model, @PathVariable("id") int vehicleId) {
+//        List<FuelType> fuelTypeList = Arrays.asList(FuelType.values());
+//        Vehicle vehicle = vehicleService.getVehicle(vehicleId);
+//        List<Refuel> refuelList = refuelService.getRefuelList(vehicle);
+//        model.addAttribute("vehicle", vehicle);
+//        model.addAttribute("afterpost", false);
+//        model.addAttribute("fuelTypeList", fuelTypeList);
+//        System.out.println(refuelList);
+//        model.addAttribute("refuelList", refuelList);
+//
+//        return "refuel";
+//    }
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

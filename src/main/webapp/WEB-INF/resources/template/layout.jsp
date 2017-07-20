@@ -15,6 +15,7 @@
     <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="/resources/bower_components/gentelella/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/resources/vendors/jquery.nicescroll-3.7.3/jquery.nicescroll-3.7.3/jquery.nicescroll.js"></script>
 </head>
 <body class="footer_fixed">
 <tiles:insertAttribute name="header"/>
@@ -46,5 +47,8 @@
 
 <!-- Custom Theme Scripts -->
 <script src="/resources/bower_components/gentelella/js/custom.js"></script>
+<script>
+    $('body').niceScroll();
+</script>
 </body>
 </html>

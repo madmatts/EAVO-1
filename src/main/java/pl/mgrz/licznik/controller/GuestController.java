@@ -26,7 +26,7 @@ public class GuestController {
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public String loginForm(Model model) {
-        if ("true".equals(session.getAttribute("logged"))) {
+        if (!session.isNew()) {
             return "redirect:/account/mypage";
         }
         return "login";

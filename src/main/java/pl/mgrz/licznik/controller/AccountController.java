@@ -39,12 +39,14 @@ public class AccountController {
 
     @RequestMapping(value = "/success", method = RequestMethod.GET)
     public String loggedIn(Model model) {
-        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (user != null) {
-            session.setAttribute("username", user.getUsername());
-            session.setAttribute("user", userService.getUser(user.getUsername()));
+        org.springframework.security.core.userdetails.User securityUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (securityUser != null) {
+            User user = userService.getUser(securityUser.getUsername());
+            session.setAttribute("username", user.getLogin());
+            session.setAttribute("user", user);
             session.setAttribute("logged", true);
-            session.setAttribute("role", userService.getUser(user.getUsername()).getRole().getRole());
+            session.setAttribute("role", user.getRole());
+            session.setAttribute("vehicleList", vehicleService.getVehiclesByUser(user.getId()));
             model.addAttribute("login", session.getAttribute("username"));
             model.addAttribute("logged", session.getAttribute("logged"));
 

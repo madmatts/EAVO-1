@@ -15,6 +15,7 @@
         <intercept-url pattern="/sec/moderation" access="ROLE_MODERATOR"/>
         <intercept-url pattern="/admin/*" access="ROLE_ADMIN"/>
         <intercept-url pattern="/account/*" access="ROLE_USER"/>
+        <intercept-url pattern="/vehicle/*" access="ROLE_USER"/>
 
         <form-login login-page="/login"
                     default-target-url="/account/success"

@@ -29,4 +29,13 @@
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
 
+    <context-param>
+        <param-name>
+            javax.servlet.jsp.jstl.fmt.locale
+        </param-name>
+        <param-value>
+            pl_PL
+        </param-value>
+    </context-param>
+
 </web-app>
