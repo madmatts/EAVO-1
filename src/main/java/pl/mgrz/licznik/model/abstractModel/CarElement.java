@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by Matts on 01.04.2017.
  */
-public abstract class CarPart {
+public abstract class CarElement {
 
     public static final int ONE_YEAR = 365;
 
@@ -18,7 +18,7 @@ public abstract class CarPart {
     protected long replaceAfterDistance;
     protected int replaceInDays;
 
-    public CarPart(long replaceAtMileage, Date replaceDate, long replaceAfterDistance, int replaceInDays, long mileage) {
+    public CarElement(long replaceAtMileage, Date replaceDate, long replaceAfterDistance, int replaceInDays, long mileage) {
         this.replaceAtMileage = replaceAtMileage;
         this.replaceDate = replaceDate;
         this.replaceAfterDistance = replaceAfterDistance;

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import pl.mgrz.licznik.model.AlarmType;
-import pl.mgrz.licznik.model.User;
-import pl.mgrz.licznik.model.Vehicle;
+import pl.mgrz.licznik.model.portal.AlarmType;
+import pl.mgrz.licznik.model.portal.User;
+import pl.mgrz.licznik.model.portal.Vehicle;
 import pl.mgrz.licznik.service.UserService;
 import pl.mgrz.licznik.service.VehicleService;
 
@@ -125,7 +125,7 @@ public class AccountController {
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editAccountPost(HttpSession session, Model model, @RequestParam("user") String email) {
-        pl.mgrz.licznik.model.User user = (pl.mgrz.licznik.model.User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         if (!email.isEmpty()) {
             user.setEmail(email);
         }

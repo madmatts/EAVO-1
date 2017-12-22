@@ -1,6 +1,6 @@
 package pl.mgrz.licznik.service;
 
-import pl.mgrz.licznik.model.Role;
+import pl.mgrz.licznik.model.portal.Role;
 
 /**
  * Created by MadMattz on 02.02.2016.

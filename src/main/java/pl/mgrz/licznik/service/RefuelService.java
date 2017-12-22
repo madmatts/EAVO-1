@@ -1,7 +1,7 @@
 package pl.mgrz.licznik.service;
 
-import pl.mgrz.licznik.model.Refuel;
-import pl.mgrz.licznik.model.Vehicle;
+import pl.mgrz.licznik.model.portal.Refuel;
+import pl.mgrz.licznik.model.portal.Vehicle;
 
 import java.util.List;
 import java.util.Map;

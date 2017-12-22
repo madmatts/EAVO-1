@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mgrz.licznik.dao.RoleDAO;
-import pl.mgrz.licznik.model.Role;
+import pl.mgrz.licznik.model.portal.Role;
 
 /**
  * Created by MadMattz on 02.02.2016.

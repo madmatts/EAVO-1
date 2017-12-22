@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mgrz.licznik.dao.RefuelDAO;
-import pl.mgrz.licznik.model.Refuel;
-import pl.mgrz.licznik.model.Vehicle;
+import pl.mgrz.licznik.model.portal.Refuel;
+import pl.mgrz.licznik.model.portal.Vehicle;
 
 import java.util.List;
 import java.util.Map;

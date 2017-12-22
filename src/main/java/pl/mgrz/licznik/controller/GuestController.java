@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.mgrz.licznik.model.AlarmType;
-import pl.mgrz.licznik.model.User;
+import pl.mgrz.licznik.model.portal.AlarmType;
+import pl.mgrz.licznik.model.portal.User;
 import pl.mgrz.licznik.service.UserService;
 
 import javax.servlet.http.HttpSession;

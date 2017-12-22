@@ -1,4 +1,4 @@
-package pl.mgrz.licznik.model;
+package pl.mgrz.licznik.model.portal;
 
 /**
  * Created by MadMattz on 12.05.2016.

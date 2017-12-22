@@ -1,7 +1,7 @@
 package pl.mgrz.licznik.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.mgrz.licznik.model.User;
+import pl.mgrz.licznik.model.portal.User;
 
 import javax.servlet.http.HttpSession;
 

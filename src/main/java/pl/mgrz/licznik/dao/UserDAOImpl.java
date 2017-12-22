@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
-import pl.mgrz.licznik.model.User;
+import pl.mgrz.licznik.model.portal.User;
 import pl.mgrz.licznik.service.RoleService;
 
 import java.util.ArrayList;

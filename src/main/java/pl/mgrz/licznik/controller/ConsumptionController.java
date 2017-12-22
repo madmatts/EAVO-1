@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.mgrz.licznik.model.AlarmType;
-import pl.mgrz.licznik.model.Refuel;
-import pl.mgrz.licznik.model.User;
-import pl.mgrz.licznik.model.Vehicle;
+import pl.mgrz.licznik.model.portal.AlarmType;
+import pl.mgrz.licznik.model.portal.Refuel;
+import pl.mgrz.licznik.model.portal.User;
+import pl.mgrz.licznik.model.portal.Vehicle;
 import pl.mgrz.licznik.service.RefuelService;
 import pl.mgrz.licznik.service.VehicleService;
 
@@ -41,6 +41,8 @@ public class ConsumptionController {
         System.out.println(refuelService.getDistinctFuelStations().get("fuelStations"));
         System.out.println("=======VALUES======");
         System.out.println(refuelService.getDistinctFuelStations().get("values"));
+        System.out.println("VEHICLE");
+        System.out.println(vehicleId);
 
         firstRefuel = refuelService.getFirstRefuel(vehicle);
         model.addAttribute("first", firstRefuel);
@@ -48,9 +50,9 @@ public class ConsumptionController {
         model.addAttribute("averageConsumption", refuelService.getAllAverageConsumption());
         model.addAttribute("fuelStations", refuelService.getDistinctFuelStations().get("fuelStations"));
         model.addAttribute("fuelStationCounts", refuelService.getDistinctFuelStations().get("values"));
-        model.addAttribute("actionPath", "/vehicle/refuel/add");
+        model.addAttribute("actionPath", "/vehicle/refuel/add"+vehicleId);
 
-        return "refuel";
+        return "refuelDashboard";
     }
 
     @RequestMapping(value = "/add/{id}", method = RequestMethod.POST)

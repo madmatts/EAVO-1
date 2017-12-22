@@ -5,9 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.mgrz.licznik.model.Refuel;
-import pl.mgrz.licznik.model.User;
-import pl.mgrz.licznik.model.Vehicle;
+import pl.mgrz.licznik.model.portal.Refuel;
+import pl.mgrz.licznik.model.portal.User;
+import pl.mgrz.licznik.model.portal.Vehicle;
 import pl.mgrz.licznik.service.UserService;
 
 import javax.servlet.http.HttpSession;

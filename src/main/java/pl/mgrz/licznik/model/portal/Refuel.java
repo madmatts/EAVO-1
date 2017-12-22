@@ -1,4 +1,4 @@
-package pl.mgrz.licznik.model;
+package pl.mgrz.licznik.model.portal;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

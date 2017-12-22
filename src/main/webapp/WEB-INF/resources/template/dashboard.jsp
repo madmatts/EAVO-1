@@ -42,7 +42,7 @@
 <script src="/resources/vendors/nprogress/nprogress.js"></script>
 
 <!-- Custom Theme Scripts -->
-<script src="/resources/Gente/js/custom.js"></script>
+<script src="/resources/js/custom.js"></script>
 
 <%--<script>--%>
     <%--$('body').niceScroll();--%>

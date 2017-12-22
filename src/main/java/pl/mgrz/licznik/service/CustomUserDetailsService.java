@@ -26,7 +26,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String login)
             throws UsernameNotFoundException {
 
-        pl.mgrz.licznik.model.User domainUser = userDAO.getUser(login);
+        pl.mgrz.licznik.model.portal.User domainUser = userDAO.getUser(login);
 
         boolean enabled = true;
         boolean accountNonExpired = true;

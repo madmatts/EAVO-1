@@ -47,7 +47,7 @@
                                     <strong>${message}</strong>
                                 </div>
                             </c:if>
-                            <form class="form-horizontal form-label-left" action="${actionPath}/${vehicleId}"
+                            <form class="form-horizontal form-label-left" action="${actionPath}"
                                   method="post" novalidate="" modelAttribute="refuel">
                                 <div class="col-md-2 col-sm-12 col-xs-12">
                                     <div class="item form-group">

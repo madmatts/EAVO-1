@@ -5,9 +5,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.mgrz.licznik.model.Refuel;
-import pl.mgrz.licznik.model.User;
-import pl.mgrz.licznik.model.Vehicle;
+import pl.mgrz.licznik.model.portal.Refuel;
+import pl.mgrz.licznik.model.portal.User;
+import pl.mgrz.licznik.model.portal.Vehicle;
 import pl.mgrz.licznik.service.VehicleService;
 
 import javax.servlet.http.HttpSession;
@@ -62,6 +62,9 @@ public class RefuelDAOImpl implements RefuelDAO {
 //        Vehicle vehicle1 = vehicleService.getVehiclesByUser(user.getId()).get(0);
         Query query = getCurrentSession().createQuery("SELECT r FROM Vehicle v INNER JOIN v.refuel r WHERE v.id=:id");
         query.setParameter("id", vehicle.getId());
+        if(query.list().isEmpty()){
+            return null;
+        }
         Refuel refuel = (Refuel) query.list().get(0);
 
         return refuel;
